@@ -1,0 +1,62 @@
+<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NumPy — Python Array Functions Explained</title><link rel="stylesheet" href="style.css"><script defer src="app.js"></script></head><body><header class="hero"><div class="eyebrow">PYTHON LIBRARIES · NUMPY · 25-PAGE PDF</div><h1>NumPy — Python Array Functions Explained</h1><p>Materialમાં આપેલા NumPy concepts અને functionsને સરળ Gujaratiમાં: code, line-by-line meaning, outputs અને exam tricks.</p><div class="nav"><a class="navlink" href="index.html">← Home</a><a class="navlink " href="unit1.html">Unit 1</a><a class="navlink " href="unit2.html">Unit 2</a><a class="navlink " href="unit3.html">Unit 3</a><a class="navlink " href="unit4.html">Unit 4</a><a class="navlink " href="unit5.html">Unit 5</a><a class="navlink active" href="numpy.html">NumPy</a><a class="navlink " href="pandas.html">Pandas</a><button class="btn secondary" onclick="window.print()">Print / Save PDF</button></div></header><main class="wrap"><div class="toolbar"><input id="topicSearch" oninput="filterTopics()" placeholder="Topic શોધો..."><span id="searchCount" class="small">બધા topics દેખાય છે</span></div><section class="topic"><h2>1. NumPy શું છે?</h2><p><b>NumPy</b> (Numerical Python) numerical arrays પર ઝડપી operations કરવા માટેની Python library છે. તેનો મુખ્ય object <code>ndarray</code> છે. Arrays સામાન્ય રીતે એકસરખા data typeના elementsને contiguous memoryમાં રાખે છે, તેથી મોટા numerical operationsમાં Python lists કરતાં ઝડપી હોઈ શકે છે.</p><div class="codebox"><pre># Install (એક વખત)
+# pip install numpy
+
+import numpy as np
+a = np.array([10, 20, 30])
+print(type(a))       # &lt;class &#x27;numpy.ndarray&#x27;&gt;
+print(a)             # [10 20 30]</pre></div><p><code>import numpy as np</code>માં np એ alias છે — આગળ લાંબું numpy લખવાને બદલે np લખી શકાય.</p></section><section class="topic"><h2>2. Array બનાવવાના functions</h2><table><tr><th>Function</th><th>કામ</th><th>ઉદાહરણ / ખાસ નોંધ</th></tr><tr><td><code>np.array(data)</code></td><td>List/tupleમાંથી array</td><td><code>np.array([2,4,6])</code></td></tr><tr><td><code>np.arange(start, stop, step)</code></td><td>Step મુજબ values; stop સામેલ નથી</td><td><code>np.arange(0,10,2)</code> → [0,2,4,6,8]</td></tr><tr><td><code>np.zeros(shape)</code></td><td>બધા zero</td><td><code>np.zeros((2,3))</code> = 2×3 array</td></tr><tr><td><code>np.ones(shape)</code></td><td>બધા one</td><td><code>np.ones(4)</code></td></tr><tr><td><code>np.eye(n)</code></td><td>Diagonal પર ones, બાકીના zero</td><td><code>np.eye(3)</code></td></tr><tr><td><code>np.linspace(start, stop, num)</code></td><td>આખા intervalમાં સમાન અંતરે num values</td><td><code>np.linspace(0,1,5)</code> → 0, .25, .5, .75, 1</td></tr><tr><td><code>reshape(rows, cols)</code></td><td>Shape બદલે, elementsની સંખ્યા સમાન હોવી જોઈએ</td><td>10 elements → <code>reshape(5,2)</code></td></tr></table><div class="codebox"><pre>import numpy as np
+a = np.arange(0, 10, 2)       # [0 2 4 6 8]
+b = np.zeros((2, 3))          # 2 rows, 3 columns
+c = np.ones(4)                # [1. 1. 1. 1.]
+d = np.eye(3)                 # 3x3 identity matrix
+e = np.linspace(0, 1, 5)      # [0.   0.25 0.5 0.75 1.]
+f = np.arange(10).reshape(5, 2)
+print(f.shape)                # (5, 2)</pre></div></section><section class="topic"><h2>3. Array attributes</h2><p>Attributes data વિશેની માહિતી આપે છે; methodની જેમ parentheses નથી.</p><table><tr><th>Attribute</th><th>અર્થ</th><th>Example</th></tr><tr><td><code>arr.shape</code></td><td>દરેક dimensionનું size</td><td>(3, 2)</td></tr><tr><td><code>arr.ndim</code></td><td>Dimensionsની સંખ્યા</td><td>2</td></tr><tr><td><code>arr.size</code></td><td>Total elements</td><td>6</td></tr><tr><td><code>arr.dtype</code></td><td>Element data type</td><td>int64/float64</td></tr></table><div class="codebox"><pre>arr = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr.shape)  # (2, 3)
+print(arr.ndim)   # 2
+print(arr.size)   # 6
+print(arr.dtype)  # integer type</pre></div></section><section class="topic"><h2>4. Random number functions</h2><table><tr><th>Function</th><th>Distribution / output</th></tr><tr><td><code>np.random.rand(...)</code></td><td>Uniform distributionમાં 0થી 1 વચ્ચે values; dimensions argumentsથી</td></tr><tr><td><code>np.random.randn(...)</code></td><td>Standard normal distributionમાંથી values</td></tr><tr><td><code>np.random.randint(low, high, size)</code></td><td>low સામેલ, high સામેલ નહીં એવા random integers</td></tr><tr><td><code>np.random.seed(n)</code></td><td>એકસરખી random sequence ફરી મેળવવામાં મદદ</td></tr></table><div class="codebox"><pre>np.random.seed(7)
+x = np.random.rand(2, 3)        # 2x3 uniform random floats
+y = np.random.randn(5)          # 5 normal-distribution values
+z = np.random.randint(1, 10, 4) # four integers 1..9</pre></div><p><b>rand vs randn:</b> randમાં values 0–1 વચ્ચે uniform રીતે ફેલાય; randnમાં zeroની આસપાસ standard normal distribution હોય છે.</p></section><section class="topic"><h2>5. Aggregation functions અને axis</h2><table><tr><th>Function / method</th><th>કામ</th></tr><tr><td><code>min()</code> / <code>np.min()</code></td><td>સૌથી નાની value</td></tr><tr><td><code>max()</code> / <code>np.max()</code></td><td>સૌથી મોટી value</td></tr><tr><td><code>argmin()</code>, <code>argmax()</code></td><td>Minimum/maximumનું index</td></tr><tr><td><code>sum()</code></td><td>સરવાળો</td></tr><tr><td><code>mean()</code></td><td>સરેરાશ</td></tr><tr><td><code>std()</code></td><td>Standard deviation</td></tr></table><div class="codebox"><pre>arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(arr.sum())          # 45
+print(arr.sum(axis=0))    # [12 15 18] — column-wise
+print(arr.sum(axis=1))    # [ 6 15 24] — row-wise
+print(arr.mean())         # 5.0
+print(arr.argmax())       # flat index of largest value</pre></div><p><b>Axis trick:</b> <code>axis=0</code>માં rows નીચે તરફ collapse થાય એટલે દરેક columnનું result મળે. <code>axis=1</code>માં columns આડી દિશામાં collapse થાય એટલે દરેક rowનું result મળે.</p><div class="diagram"><div class="node">axis=0 → Column totals</div><div class="node">axis=1 → Row totals</div></div></section><section class="topic"><h2>6. Indexing અને slicing</h2><p>Index zeroથી શરૂ થાય છે. Multi-dimensional arrayમાં <code>arr[row, column]</code> સરળ notation છે. Slicingનું syntax <code>arr[start:end:step]</code>; end સામેલ થતું નથી.</p><div class="codebox"><pre>arr = np.array([&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;])
+print(arr[2])       # c
+print(arr[1:4])     # [&#x27;b&#x27; &#x27;c&#x27; &#x27;d&#x27;]
+print(arr[::2])     # [&#x27;a&#x27; &#x27;c&#x27; &#x27;e&#x27;]
+
+m = np.array([[10, 20, 30], [40, 50, 60]])
+print(m[1, 2])      # 60
+print(m[:, 1])      # second column: [20 50]
+print(m[0, :])      # first row: [10 20 30]</pre></div><p><b>મહત્વની ચેતવણી:</b> NumPy slicing ઘણીવાર original arrayની view આપે છે; sliceમાં ફેરફાર કરવાથી originalમાં પણ ફેરફાર થઈ શકે. Independent copy જોઈએ તો <code>arr_slice.copy()</code> કરો.</p><div class="codebox"><pre>a = np.array([10, 20, 30, 40])
+part = a[1:3]
+part[0] = 999
+print(a)             # [ 10 999  30  40] — original બદલાયું
+
+part2 = a[1:3].copy() # independent copy</pre></div></section><section class="topic"><h2>7. Arithmetic operations અને broadcasting</h2><p>Array પર arithmetic operator element-wise લાગુ પડે છે. Scalar સાથે operation થાય ત્યારે scalar દરેક element પર લાગુ પડે છે — આ broadcasting છે.</p><div class="codebox"><pre>a = np.array([[1, 2], [3, 4]])
+b = np.array([[10, 20], [30, 40]])
+print(a + b)    # element-wise addition
+print(a * b)    # element-wise multiplication
+print(a * 2)    # scalar multiplication
+print(a ** 2)   # each element squared
+print(a &gt; 2)    # boolean array</pre></div><p>નોંધ: <code>a * b</code> element-wise multiply છે; matrix multiplication માટે <code>a @ b</code> અથવા <code>np.matmul(a,b)</code> વપરાય છે.</p></section><section class="topic"><h2>8. Sorting અને conditional selection</h2><p><code>np.sort(arr)</code> sorted copy આપે છે. Comparison (<code>&gt;</code>, <code>==</code> વગેરે) દરેક element પર લાગુ થઈ Boolean array આપે છે. Boolean maskથી જરૂરી values પસંદ કરી શકાય.</p><div class="codebox"><pre>a = np.array([7, 2, 9, 1])
+print(np.sort(a))          # [1 2 7 9]
+
+marks = np.array([35, 72, 48, 91])
+mask = marks &gt;= 50
+print(mask)                # [False True False True]
+print(marks[mask])         # [72 91]
+print(marks[marks &gt;= 50])  # same result</pre></div></section><section class="topic"><h2>9. Beautiful Soup — web scraping basics</h2><p>NumPy PDFના outlineમાં Beautiful Soup પણ છે. તે HTML/XML parse કરીને webpageમાંથી text/links શોધવામાં મદદ કરતી library છે. Websiteની terms અને access rulesનું પાલન કરો; scrapingને permission વગર private/login-protected data મેળવવા માટે વાપરશો નહીં.</p><div class="codebox"><pre># pip install beautifulsoup4 requests
+import requests
+from bs4 import BeautifulSoup
+
+url = &quot;https://example.com&quot;
+response = requests.get(url, timeout=10)
+soup = BeautifulSoup(response.text, &quot;html.parser&quot;)
+
+print(soup.title.get_text(strip=True))
+for link in soup.find_all(&quot;a&quot;):
+    print(link.get_text(strip=True), link.get(&quot;href&quot;))</pre></div><p><code>requests.get()</code> page fetch કરે છે; <code>BeautifulSoup(..., "html.parser")</code> HTML parse કરે છે; <code>find_all("a")</code> બધા anchor tags શોધે છે; <code>get_text()</code> tagનું text અને <code>get("href")</code> link destination આપે છે.</p></section><section class="topic"><h2>NumPy functions — exam quick list</h2><ul><li>Creation: <code>array, arange, zeros, ones, eye, linspace</code></li><li>Shape: <code>shape, ndim, size, dtype, reshape</code></li><li>Random: <code>rand, randn, randint, seed</code></li><li>Aggregation: <code>min, max, argmin, argmax, sum, mean, std</code></li><li>Selection: indexing, slicing, boolean mask</li><li>Operations: arithmetic, comparison, sorting</li><li>Remember: <code>axis=0</code> column results, <code>axis=1</code> row results.</li></ul></section></main><footer class="footer">Darshan University CSE · Uploaded lecture materials આધારિત · સરળ ગુજરાતી study notes</footer></body></html>
