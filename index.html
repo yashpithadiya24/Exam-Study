@@ -1,6 +1,613 @@
-<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Machine Learning — Gujarati Study Notes</title><link rel="stylesheet" href="style.css"></head><body><header class="hero"><div class="eyebrow">DARSHAN UNIVERSITY · CSE · EXAM REVISION</div><h1>Machine Learning — સરળ ગુજરાતી Notes</h1><p>PDFના Unit 1, 2 અને 3 ને topic પ્રમાણે ગોઠવેલા notes. સમજવા માટે સરળ ભાષા, English technical terms, diagrams, formulas, solved examples અને નાના interactive calculators.</p><div class="pillrow"><span class="tag">Medium detail</span><span class="tag">Written-exam focused</span><span class="tag">Print / Save PDF</span><span class="tag">Offline website</span></div></header><main class="wrap"><div class="note"><b>સ્રોત અંગે નોંધ:</b> હાલમાં 3 PDFs અપલોડ થયાં છે — Unit 1 (60 pages), Unit 2 (51 pages), Unit 3 (88 pages). તેથી આ websiteમાં આ ત્રણ units જ સંપૂર્ણ રીતે સામેલ છે. Course syllabusમાં Unit 4 અને 5નાં નામ દેખાય છે, પણ તેમના lecture PDFs અહીં અપલોડ નથી; source-based notes માટે તે PDFs જરૂરી રહેશે.</div><section class="topic"><h2>કઈ રીતે વાંચવું?</h2><ol class="steps"><li>દરેક topicમાં પહેલા “અર્થ” સમજો, પછી formula/diagram જુઓ.</li><li>“યાદ રાખવાની trick” ને પોતાની ભાષામાં એક વાર બોલો.</li><li>Calculation હોય તો example ઢાંકી ને જાતે solve કરો.</li><li>છેલ્લે browserનું <b>Print / Save PDF</b> દબાવી notes સાચવો.</li></ol></section><div class="grid"><article class="card"><span class="tag">Unit 1 · 60 pages</span><h2>Introduction to Machine Learning</h2><p>AI vs ML vs DL, ML lifecycle, learning types, terminology, algorithms, challenges, bias–variance અને Scikit-learn basics.</p><a class="btn" href="unit1.html">Unit 1 ખોલો →</a></article><article class="card"><span class="tag">Unit 2 · 51 pages</span><h2>Regression</h2><p>Linear / Multiple / Polynomial regression, OLS, Gradient Descent, R², SVR, Logistic Regression, Ridge અને Lasso.</p><a class="btn" href="unit2.html">Unit 2 ખોલો →</a></article><article class="card"><span class="tag">Unit 3 · 88 pages</span><h2>Classification & Ensembles</h2><p>Decision Tree, Entropy / Gain Ratio / Gini, KNN, SVC, Naive Bayes, evaluation metrics, validation અને ensemble learning.</p><a class="btn" href="unit3.html">Unit 3 ખોલો →</a></article></div><section class="topic"><h2>ઝડપી overview</h2><div class="diagram"><div class="node">Data</div><span class="arrow">→</span><div class="node">Algorithm / Training</div><span class="arrow">→</span><div class="node">Trained Model</div><span class="arrow">→</span><div class="node">Prediction</div></div><p>MLમાં dataમાંથી pattern શીખવામાં આવે છે. Regression સામાન્ય રીતે numeric value આપે છે; Classification category આપે છે; Clustering label વગર group બનાવે છે.</p></section><section class="topic"><h2>નવી ઉમેરેલી સામગ્રી · Unit 4, Unit 5 અને Python Libraries</h2><p>આ આવૃત્તિમાં અગાઉના Unit 1–3 ના HTML pagesના contentને અસ્પર્શિત રાખીને નવા pages ઉમેર્યા છે. Unit 4/5 અને NumPy/Pandas PDFsમાંથી written-exam-focused Gujarati notes, functions સમજાવટ અને સરળ code examples ઉમેર્યાં છે.</p><div class="grid">
-<article class="card"><span class="tag">Unit 4 · 98 pages</span><h2>Clustering & Dimensionality Reduction</h2><p>K-Means, K-Medoids, Hierarchical, BIRCH, DBSCAN, Outliers, Feature Selection, PCA અને LDA.</p><a class="btn" href="unit4.html">Unit 4 ખોલો →</a></article>
-<article class="card"><span class="tag">Unit 5 · 45 pages</span><h2>Artificial Neural Network</h2><p>Perceptron, ANN architecture, backpropagation, activation functions, hyperparameters, TensorFlow/Keras, CNN, RNN અને LSTM.</p><a class="btn" href="unit5.html">Unit 5 ખોલો →</a></article>
-<article class="card"><span class="tag">NumPy · 25 pages</span><h2>NumPy Function Guide</h2><p>Array creation, shape, random functions, aggregations, axis, slicing, operations, sorting અને code explanations.</p><a class="btn" href="numpy.html">NumPy ખોલો →</a></article>
-<article class="card"><span class="tag">Pandas · 41 pages</span><h2>Pandas Function Guide</h2><p>Series, DataFrame, loc/iloc, missing data, groupby, concat/join/merge અને CSV/Excel reading.</p><a class="btn" href="pandas.html">Pandas ખોલો →</a></article>
-</div><p class="small">નોંધ: Unit 1–3ના જૂના pagesના મૂળ contentમાં ફેરફાર કરેલો નથી. નવા pages અલગ files છે.</p></section></main><footer class="footer">Prepared from the uploaded Machine Learning PDFs · Gujarati explanations added for easier learning.</footer></body></html>
+<!doctype html>
+<html lang="gu">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Graph Theory Gujlish Notes</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #131b30;
+            --panel2: #18243b;
+            --ink: #edf3ff;
+            --muted: #b5c2dc;
+            --accent: #7ee7c4;
+            --gold: #ffd479;
+            --pink: #ff9ab5;
+            --line: #2a3857
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(circle at 85% 0, #1a2d4a 0, transparent 32%), var(--bg);
+            color: var(--ink);
+            font: 16px/1.65 system-ui, -apple-system, Segoe UI, sans-serif;
+            overflow-wrap: break-word
+        }
+
+        header {
+            padding: 38px 22px 28px;
+            max-width: 1120px;
+            margin: auto
+        }
+
+        header .tag {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: .78rem
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 5.5vw, 3.2rem);
+            line-height: 1.15;
+            margin: .4em 0;
+            word-break: break-word
+        }
+
+        header p {
+            color: var(--muted);
+            max-width: 760px;
+            font-size: 1.02rem
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #0b1020f0;
+            border-block: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px max(16px, calc((100% - 1080px)/2));
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none
+        }
+
+        nav::-webkit-scrollbar {
+            display: none
+        }
+
+        nav a {
+            white-space: nowrap;
+            text-decoration: none;
+            color: var(--ink);
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: var(--panel);
+            border: 1px solid transparent;
+            transition: all .2s ease;
+            font-size: .95rem;
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            min-height: 38px
+        }
+
+        nav a:hover {
+            background: var(--panel2);
+            color: var(--accent);
+            border-color: var(--line)
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: #06121a;
+            font-weight: 800;
+            border-color: var(--accent)
+        }
+
+        main {
+            max-width: 1080px;
+            margin: 24px auto;
+            padding: 0 18px 70px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px
+        }
+
+        .card,
+        section {
+            background: linear-gradient(140deg, var(--panel), #10182a);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: 0 12px 30px #0002
+        }
+
+        .card {
+            transition: transform .2s ease, border-color .2s ease
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent)
+        }
+
+        h2 {
+            font-size: clamp(1.3rem, 4.5vw, 1.55rem);
+            margin: 0 0 10px;
+            color: var(--accent);
+            word-break: break-word
+        }
+
+        h3 {
+            color: var(--gold);
+            margin: 20px 0 6px;
+            font-size: clamp(1.1rem, 3.8vw, 1.3rem);
+            word-break: break-word
+        }
+
+        p {
+            margin: 8px 0
+        }
+
+        ol,
+        ul {
+            padding-left: 24px;
+            margin: 10px 0
+        }
+
+        li {
+            margin: 6px 0
+        }
+
+        .muted,
+        small {
+            color: var(--muted)
+        }
+
+        .pill {
+            display: inline-block;
+            background: #20344b;
+            color: var(--accent);
+            border-radius: 99px;
+            padding: 3px 9px;
+            font-size: .8rem;
+            margin: 3px
+        }
+
+        .formula {
+            font: 600 1.02rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+            background: #08101d;
+            border: 1px solid #30425f;
+            padding: 12px 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            color: #fff;
+            max-width: 100%
+        }
+
+        .memory {
+            border-left: 4px solid var(--gold);
+            padding: 10px 14px;
+            background: #302b20;
+            border-radius: 8px;
+            margin: 12px 0
+        }
+
+        .exam {
+            border-left: 4px solid var(--accent);
+            padding: 10px 14px;
+            background: #142b2b;
+            border-radius: 8px;
+            margin: 12px 0
+        }
+
+        .warn {
+            border-left: 4px solid var(--pink);
+            padding: 10px 14px;
+            background: #321f2b;
+            border-radius: 8px;
+            margin: 12px 0
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+            display: block;
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch
+        }
+
+        table::-webkit-scrollbar {
+            height: 6px
+        }
+
+        table::-webkit-scrollbar-thumb {
+            background: var(--line);
+            border-radius: 3px
+        }
+
+        td,
+        th {
+            border: 1px solid var(--line);
+            padding: 9px 12px;
+            text-align: left;
+            font-size: .95rem;
+            min-width: 90px
+        }
+
+        th {
+            background: #1e2c45;
+            white-space: nowrap
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto
+        }
+
+        .diagram {
+            background: #09111e;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 16px 0
+        }
+
+        button {
+            background: var(--accent);
+            color: #06121a;
+            border: 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: .92rem;
+            transition: transform .15s ease, opacity .15s ease;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        button:hover {
+            opacity: .9;
+            transform: translateY(-1px)
+        }
+
+        button:active {
+            transform: scale(0.98)
+        }
+
+        details {
+            background: #101a2d;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin: 10px 0
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--gold);
+            font-weight: 700;
+            padding: 4px 0;
+            line-height: 1.4;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px
+        }
+
+        .flow span {
+            padding: 8px 12px;
+            border: 1px solid #4a6488;
+            border-radius: 10px;
+            background: #16253b;
+            font-size: .92rem;
+            text-align: center
+        }
+
+        .arrow {
+            color: var(--accent);
+            font-weight: 900
+        }
+
+        .quiz-answer {
+            display: none;
+            color: var(--accent);
+            padding-top: 8px
+        }
+
+        .reveal {
+            margin-top: 8px
+        }
+
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap
+        }
+
+        .page-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: var(--panel2);
+            color: var(--ink);
+            text-decoration: none;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            font-weight: 700;
+            transition: all .2s ease;
+            min-height: 44px
+        }
+
+        .page-nav a:hover {
+            background: var(--panel);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px)
+        }
+
+        .page-nav a.next {
+            margin-left: auto
+        }
+
+        footer {
+            max-width: 1080px;
+            margin: auto;
+            padding: 24px 20px;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            text-align: center;
+            font-size: .92rem
+        }
+
+        @media(max-width:768px) {
+            body {
+                font-size: 15px
+            }
+
+            header {
+                padding: 26px 16px 20px
+            }
+
+            nav {
+                padding: 10px 14px
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: .9rem
+            }
+
+            main {
+                margin: 16px auto;
+                padding: 0 12px 60px
+            }
+
+            section {
+                padding: 16px 14px;
+                border-radius: 14px;
+                margin: 12px 0
+            }
+
+            .card {
+                padding: 16px 14px;
+                border-radius: 14px
+            }
+
+            .controls button {
+                flex: 1 1 calc(50% - 8px);
+                min-width: 130px;
+                text-align: center;
+                padding: 11px 12px
+            }
+
+            .page-nav {
+                flex-direction: column;
+                gap: 10px
+            }
+
+            .page-nav a {
+                width: 100%;
+                justify-content: center;
+                padding: 13px 16px;
+                font-size: .95rem
+            }
+
+            .page-nav a.next {
+                margin-left: 0
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 12px
+            }
+
+            .formula {
+                font-size: .9rem;
+                padding: 10px 12px
+            }
+
+            ol,
+            ul {
+                padding-left: 20px
+            }
+
+            td,
+            th {
+                padding: 8px 10px;
+                font-size: .88rem
+            }
+
+            .flow span {
+                font-size: .85rem;
+                padding: 7px 9px
+            }
+        }
+
+        @media(max-width:480px) {
+            header {
+                padding: 22px 14px 18px
+            }
+
+            main {
+                padding: 0 10px 50px
+            }
+
+            section {
+                padding: 14px 12px
+            }
+
+            .controls button {
+                width: 100%;
+                flex: 1 1 100%;
+                padding: 12px 14px
+            }
+
+            nav {
+                gap: 6px;
+                padding: 8px 10px
+            }
+
+            nav a {
+                padding: 7px 10px;
+                font-size: .85rem
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #111
+            }
+
+            nav,
+            .controls,
+            button,
+            .page-nav {
+                display: none
+            }
+
+            .card,
+            section {
+                break-inside: avoid;
+                background: white;
+                color: #111;
+                border: 1px solid #aaa;
+                box-shadow: none
+            }
+
+            .muted,
+            small {
+                color: #444
+            }
+
+            .formula {
+                color: #111;
+                background: #eee
+            }
+
+            .memory,
+            .exam,
+            .warn {
+                background: #f4f4f4
+            }
+
+            h2,
+            h3 {
+                color: #111
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="tag">B.Tech • Graph Theory</div>
+        <h1>Graph Theory, સરળ ભાષામાં.</h1>
+        <p>Visual notes for fast understanding and written-exam preparation. Open a unit, revise the key ideas, then
+            test yourself.</p>
+    </header>
+    <nav><a href="index.html" class="active">Home</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a
+            href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav>
+    <main>
+        <section>
+            <h2>Welcome to Graph Theory Notes</h2>
+            <p>આ mini-site exam-focused revision માટે છે. દરેક unitમાં સરળ Gujarati-English explanation, formulas, easy
+                examples, diagrams, memory tricks અને practice answers છે.</p>
+            <div class="exam"><b>સંપૂર્ણ 5 Units ઉપલબ્ધ:</b> Unit 1 થી Unit 5 સુધીના બધા visual notes, formulas,
+                examples, memory tricks અને practice questions તૈયાર છે. નીચેથી કોઈપણ unit પસંદ કરી revision શરૂ કરો.
+            </div>
+        </section>
+        <section>
+            <h2>Choose a unit</h2>
+            <div class="grid"><a class="card" style="text-decoration:none;color:inherit" href="unit1.html"><span
+                        class="pill">Unit 1</span>
+                    <h3>Trees & Spanning Trees</h3>
+                    <p>Open notes →</p>
+                </a><a class="card" style="text-decoration:none;color:inherit" href="unit2.html"><span class="pill">Unit
+                        2</span>
+                    <h3>Cut-Sets & Connectivity</h3>
+                    <p>Open notes →</p>
+                </a><a class="card" style="text-decoration:none;color:inherit" href="unit3.html"><span class="pill">Unit
+                        3</span>
+                    <h3>Domination & Matching</h3>
+                    <p>Open notes →</p>
+                </a><a class="card" style="text-decoration:none;color:inherit" href="unit4.html"><span class="pill">Unit
+                        4</span>
+                    <h3>Spectral Graph Theory</h3>
+                    <p>Open notes →</p>
+                </a><a class="card" style="text-decoration:none;color:inherit" href="unit5.html"><span class="pill">Unit
+                        5</span>
+                    <h3>Graph Algorithms</h3>
+                    <p>Open notes →</p>
+                </a></div>
+        </section>
+        <section>
+            <h2>How to study these notes</h2>
+            <ol>
+                <li>Read the definition and diagram first.</li>
+                <li>Say the memory trick aloud in your own words.</li>
+                <li>Copy the formula and solve the example without looking.</li>
+                <li>Open the practice answers only after attempting them.</li>
+                <li>Use Print / Save PDF to keep a unit offline.</li>
+            </ol>
+            <p class="muted">Language note: technical terms are retained in English so they match the PPT and written
+                exam vocabulary. Explanations are simplified into everyday Gujarati/Gujlish.</p>
+        </section>
+    </main>
+    <footer>Graph Theory Gujlish Notes • Complete five-unit set (Unit 1 to Unit 5).</footer>
+</body>
+
+</html>
