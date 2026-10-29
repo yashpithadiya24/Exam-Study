@@ -1,57 +1,139 @@
-<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 1: Trees & Spanning Trees | Graph Theory Notes</title><style>
-:root{--bg:#0b1020;--panel:#131b30;--panel2:#18243b;--ink:#edf3ff;--muted:#b5c2dc;--accent:#7ee7c4;--gold:#ffd479;--pink:#ff9ab5;--line:#2a3857}
-*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 85% 0,#1a2d4a 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;overflow-wrap:break-word}
-header{padding:38px 22px 28px;max-width:1120px;margin:auto}header .tag{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.75rem,5.5vw,3.2rem);line-height:1.15;margin:.4em 0;word-break:break-word}header p{color:var(--muted);max-width:760px;font-size:1.02rem}
-nav{position:sticky;top:0;z-index:10;background:#0b1020f0;border-block:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px max(16px,calc((100% - 1080px)/2));display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid transparent;transition:all .2s ease;font-size:.95rem;display:inline-flex;align-items:center;flex-shrink:0;min-height:38px}nav a:hover{background:var(--panel2);color:var(--accent);border-color:var(--line)}nav a.active{background:var(--accent);color:#06121a;font-weight:800;border-color:var(--accent)}
-main{max-width:1080px;margin:24px auto;padding:0 18px 70px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card,section{background:linear-gradient(140deg,var(--panel),#10182a);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 12px 30px #0002}.card{transition:transform .2s ease,border-color .2s ease}.card:hover{transform:translateY(-2px);border-color:var(--accent)}h2{font-size:clamp(1.3rem,4.5vw,1.55rem);margin:0 0 10px;color:var(--accent);word-break:break-word}h3{color:var(--gold);margin:20px 0 6px;font-size:clamp(1.1rem,3.8vw,1.3rem);word-break:break-word}p{margin:8px 0}ol,ul{padding-left:24px;margin:10px 0}li{margin:6px 0}.muted,small{color:var(--muted)}.pill{display:inline-block;background:#20344b;color:var(--accent);border-radius:99px;padding:3px 9px;font-size:.8rem;margin:3px}.formula{font:600 1.02rem/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;background:#08101d;border:1px solid #30425f;padding:12px 15px;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#fff;max-width:100%}.memory{border-left:4px solid var(--gold);padding:10px 14px;background:#302b20;border-radius:8px;margin:12px 0}.exam{border-left:4px solid var(--accent);padding:10px 14px;background:#142b2b;border-radius:8px;margin:12px 0}.warn{border-left:4px solid var(--pink);padding:10px 14px;background:#321f2b;border-radius:8px;margin:12px 0}table{border-collapse:collapse;width:100%;margin:12px 0;display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table::-webkit-scrollbar{height:6px}table::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}td,th{border:1px solid var(--line);padding:9px 12px;text-align:left;font-size:.95rem;min-width:90px}th{background:#1e2c45;white-space:nowrap}svg{max-width:100%;height:auto;display:block;margin:10px auto}.diagram{background:#09111e;border:1px solid var(--line);border-radius:14px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}button{background:var(--accent);color:#06121a;border:0;padding:10px 15px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.92rem;transition:transform .15s ease,opacity .15s ease;-webkit-tap-highlight-color:transparent}button:hover{opacity:.9;transform:translateY(-1px)}button:active{transform:scale(0.98)}details{background:#101a2d;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:var(--gold);font-weight:700;padding:4px 0;line-height:1.4;-webkit-tap-highlight-color:transparent}.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.flow span{padding:8px 12px;border:1px solid #4a6488;border-radius:10px;background:#16253b;font-size:.92rem;text-align:center}.arrow{color:var(--accent);font-weight:900}.quiz-answer{display:none;color:var(--accent);padding-top:8px}.reveal{margin-top:8px}.page-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.page-nav a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--panel2);color:var(--ink);text-decoration:none;border-radius:12px;border:1px solid var(--line);font-weight:700;transition:all .2s ease;min-height:44px}.page-nav a:hover{background:var(--panel);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}.page-nav a.next{margin-left:auto}footer{max-width:1080px;margin:auto;padding:24px 20px;color:var(--muted);border-top:1px solid var(--line);text-align:center;font-size:.92rem}@media(max-width:768px){body{font-size:15px}header{padding:26px 16px 20px}nav{padding:10px 14px}nav a{padding:8px 12px;font-size:.9rem}main{margin:16px auto;padding:0 12px 60px}section{padding:16px 14px;border-radius:14px;margin:12px 0}.card{padding:16px 14px;border-radius:14px}.controls button{flex:1 1 calc(50% - 8px);min-width:130px;text-align:center;padding:11px 12px}.page-nav{flex-direction:column;gap:10px}.page-nav a{width:100%;justify-content:center;padding:13px 16px;font-size:.95rem}.page-nav a.next{margin-left:0}.grid{grid-template-columns:1fr;gap:12px}.formula{font-size:.9rem;padding:10px 12px}ol,ul{padding-left:20px}td,th{padding:8px 10px;font-size:.88rem}.flow span{font-size:.85rem;padding:7px 9px}}@media(max-width:480px){header{padding:22px 14px 18px}main{padding:0 10px 50px}section{padding:14px 12px}.controls button{width:100%;flex:1 1 100%;padding:12px 14px}nav{gap:6px;padding:8px 10px}nav a{padding:7px 10px;font-size:.85rem}}@media print{body{background:white;color:#111}nav,.controls,button,.page-nav{display:none}.card,section{break-inside:avoid;background:white;color:#111;border:1px solid #aaa;box-shadow:none}.muted,small{color:#444}.formula{color:#111;background:#eee}.memory,.exam,.warn{background:#f4f4f4}h2,h3{color:#111}}
-</style></head><body><header><div class="tag">Graph Theory • Gujlish Revision</div><h1>Unit 1: Trees & Spanning Trees</h1><p>Easy Gujarati + English notes • medium detail • definitions, formulas, examples, memory tricks and written-exam format.</p><div class="controls"><button onclick="window.print()">Print / Save PDF</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">Open practice answers</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">Close answers</button></div></header><nav><a href="index.html">Home</a><a href="unit1.html" class="active">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main>
-<section id="map"><h2>Unit map</h2><div class="grid">
-<div class="card"><span class="pill">1</span><b>Tree basics</b><p>Connected + no cycle; unique path; n vertices ⇒ n−1 edges.</p></div>
-<div class="card"><span class="pill">2</span><b>Leaves, distance, center</b><p>Degree 1, shortest-path distance, eccentricity, radius, diameter.</p></div>
-<div class="card"><span class="pill">3</span><b>Spanning tree</b><p>All vertices, only enough edges to stay connected.</p></div>
-<div class="card"><span class="pill">4</span><b>Fundamental circuits + counting</b><p>Chord added to a tree creates one unique cycle; Cayley count.</p></div></div></section>
-<section id="tree"><h2>1. Tree: મૂળ idea</h2><p><b>Tree</b> એ એવો simple graph છે જે <b>connected</b> હોય અને તેમાં <b>cycle ન હોય</b>. એટલે કોઈપણ બે vertices વચ્ચે exactly one simple path મળે.</p>
-<div class="diagram"><svg viewBox="0 0 520 135" role="img" aria-label="Tree and cycle example"><g stroke="#7ee7c4" stroke-width="3" fill="none"><path d="M35 70 L105 30 L175 70 L245 30 L315 70"/><path d="M175 70 L175 112"/></g><g fill="#ffd479"><circle cx="35" cy="70" r="7"/><circle cx="105" cy="30" r="7"/><circle cx="175" cy="70" r="7"/><circle cx="245" cy="30" r="7"/><circle cx="315" cy="70" r="7"/><circle cx="175" cy="112" r="7"/></g><text x="360" y="40" fill="#edf3ff" font-size="14">Tree</text><text x="360" y="62" fill="#b5c2dc" font-size="12">connected</text><text x="360" y="79" fill="#b5c2dc" font-size="12">no cycle</text></svg></div>
-<h3>Must-know properties</h3><ul><li>Tree with n vertices has exactly <b>n − 1 edges</b>.</li><li>Every pair of vertices has exactly one path.</li><li>Every edge is a bridge: remove any edge and the tree disconnects.</li><li>Every tree with at least 2 vertices has at least 2 leaves.</li><li>Adding one extra edge to a tree creates exactly one cycle.</li></ul>
-<div class="formula">Tree ⇔ connected + acyclic<br>For a tree: e = n − 1<br>For a connected graph: rank = n − 1</div>
-<div class="memory"><b>Memory trick:</b> “Tree = જોડાયેલું, પણ loop વગર.” Vertices n હોય તો edge એક ઓછા: n−1.</div>
-<h3>Path tree vs Star tree</h3><div class="grid"><div class="card"><b>Path P₅</b><svg viewBox="0 0 260 65"><g stroke="#7ee7c4" stroke-width="3"><path d="M25 30H235"/></g><g fill="#ffd479"><circle cx="25" cy="30" r="7"/><circle cx="77" cy="30" r="7"/><circle cx="129" cy="30" r="7"/><circle cx="181" cy="30" r="7"/><circle cx="235" cy="30" r="7"/></g></svg><p>Chain જેવી રચના. બે leaves; middle vertices degree 2.</p></div><div class="card"><b>Star K₁,₄</b><svg viewBox="0 0 260 90"><g stroke="#7ee7c4" stroke-width="3"><path d="M130 45L35 15M130 45L225 15M130 45L35 75M130 45L225 75"/></g><g fill="#ffd479"><circle cx="130" cy="45" r="8"/><circle cx="35" cy="15" r="7"/><circle cx="225" cy="15" r="7"/><circle cx="35" cy="75" r="7"/><circle cx="225" cy="75" r="7"/></g></svg><p>એક center બધાં leaves સાથે જોડાયેલો. Maximum degree n−1.</p></div></div>
-<h3>Quick calculation</h3><p>n = 12 હોય તો edges = 12−1 = <b>11</b>. n=7, e=6 હોય તો માત્ર edge countથી tree confirm ન કરવો: graph connected પણ હોવો જોઈએ.</p>
-<div class="exam"><b>Exam answer format:</b> “A tree is a connected acyclic graph. A tree with n vertices has n−1 edges. Conversely, a connected graph with n vertices and n−1 edges is a tree.” પછી values મૂકી calculation બતાવો.</div>
+<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Unit 1 — Introduction to .NET Web API</title><link rel="stylesheet" href="style.css"></head><body><header><div class="hero"><div class="eyebrow">ASP.NET CORE WEB API • UNIT 1</div><h1>Unit 1 — Introduction to .NET Web API</h1><p>C# fundamentals, .NET overview, HTTP/REST, controllers, middleware, DI, status codes અને CRUD.</p><p class="small">સરળ ગુજરાતી • Written exam focus • Examples + code + memory tricks</p></div></header><nav class="navwrap"><a href="index.html">🏠 બધા Units</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main><div class="toolbar"><input id="topicSearch" type="search" placeholder="આ પેજમાં topic શોધો…"><button id="printBtn">Print / Save PDF</button></div>
+<section class="section"><h2>1. .NET, C# અને ASP.NET Coreનો પરિચય</h2>
+<div class="definition"><b>ASP.NET Core Web API:</b> HTTP દ્વારા બે software systems વચ્ચે data અને functionality આપતી interface. Client (browser/mobile/Postman) request મોકલે છે; API logic ચલાવી response આપે છે.</div>
+<div class="diagram"><div class="node">Mobile / Browser / Postman</div><div class="arrow">→ HTTP →</div><div class="node">ASP.NET Core API<br><span class="small">Controller + Services</span></div><div class="arrow">→</div><div class="node">Database</div></div>
+<h3>.NET અને C#</h3><ul><li><b>.NET:</b> applications બનાવવા અને ચલાવવા માટેનું development platform/runtime ecosystem.</li><li><b>C#:</b> .NET પર code લખવાની programming language.</li><li><b>ASP.NET Core:</b> web apps અને Web APIs બનાવવા માટેનું framework.</li></ul>
+<div class="grid"><div class="mini"><strong>Cross-platform</strong><br>Windows, Linux અને macOS પર ચાલે.</div><div class="mini"><strong>Open-source</strong><br>Source code ઉપલબ્ધ છે.</div><div class="mini"><strong>High performance</strong><br>Web request માટે optimized runtime અને Kestrel server.</div><div class="mini"><strong>Built-in DI</strong><br>Dependencies framework દ્વારા provide થાય.</div></div>
+<div class="trick"><b>યાદ રાખો: .NET = Platform, C# = Language, ASP.NET Core = Web Framework.</b></div>
+<h3>C# fundamentals: exam માટે જરૂરી</h3><table><tr><th>Topic</th><th>સરળ અર્થ / ઉદાહરણ</th></tr><tr><td>Variable & type</td><td><code>int age = 20;</code>, <code>string name = "Asha";</code>, <code>bool active = true;</code></td></tr><tr><td>Condition</td><td><code>if (age >= 18) { Console.WriteLine("Adult"); }</code></td></tr><tr><td>Loop</td><td><code>for (int i=0; i&lt;3; i++) Console.WriteLine(i);</code></td></tr><tr><td>Method</td><td><code>int Add(int a, int b) { return a+b; }</code> — ફરી ઉપયોગ કરી શકાય એવો code block.</td></tr><tr><td>Class/Object</td><td>Class blueprint છે; object એ classનું actual instance.</td></tr><tr><td>Interface</td><td>કયા methods હોવા જોઈએ તે contract; implementation classમાં આવે.</td></tr><tr><td>Exception handling</td><td><code>try { ... } catch(Exception ex) { ... }</code> — runtime error handle કરવા.</td></tr></table>
+<h3>Namespace અને Console</h3><p><code>namespace CollegeApp</code> સંબંધિત classes ને group કરે છે અને નામનો ટકરાવ ઘટાડે છે. <code>Console.WriteLine()</code> line લખે; <code>Console.ReadLine()</code> input વાંચે; <code>Console.ReadKey()</code> key pressની રાહ જુએ.</p>
 </section>
-<section id="degree"><h2>2. Degree sequenceથી tree possible છે કે નહીં?</h2><p>Undirected graphમાં Degree-Sum Theorem: બધા degreesનો સરવાળો = 2e. Tree માટે e=n−1, એટલે degree sum = 2(n−1).</p><div class="formula">Σ deg(v) = 2e = 2(n − 1)</div>
-<p><b>ઉદાહરણ:</b> 12 verticesમાં એક degree 5, બે degree 3 અને બાકીના 9 leaves (degree 1) હોય તો sum = 5 + 3+3 + 9×1 = 20. પણ tree માટે 2(12−1)=22 જોઈએ. તેથી આવું tree <b>શક્ય નથી</b>.</p>
-<div class="memory"><b>Trick:</b> “Degree sum double edges.” પહેલા degree sum ગણો, પછી 2(n−1) સાથે compare કરો.</div>
+<section class="section"><h2>2. HTTP, REST અને JSON</h2>
+<div class="definition"><b>REST:</b> resource આધારિત architectural style; resource URLથી ઓળખાય અને standard HTTP methods વડે operate થાય. REST API સામાન્ય રીતે stateless હોય છે.</div>
+<table><tr><th>Method</th><th>કામ</th><th>Example</th><th>સામાન્ય status</th></tr><tr><td>GET</td><td>વાંચવું</td><td><code>GET /api/products</code></td><td>200 OK</td></tr><tr><td>POST</td><td>નવો record બનાવવો</td><td><code>POST /api/products</code></td><td>201 Created</td></tr><tr><td>PUT</td><td>સામાન્ય રીતે resource સંપૂર્ણ update</td><td><code>PUT /api/products/5</code></td><td>200/204</td></tr><tr><td>DELETE</td><td>resource કાઢવો</td><td><code>DELETE /api/products/5</code></td><td>204 No Content</td></tr></table>
+<p><b>GET vs POST:</b> GET data મેળવવા માટે, સામાન્ય રીતે queryમાં filters; POST server પર resource/operation submit કરવા માટે, data request bodyમાં. GET safe/read-only હોવો જોઈએ; POSTને ફરી મોકલવાથી નવી entry થઈ શકે.</p>
+<h3>HTTP Request / Response</h3><div class="diagram"><div class="node">Request line<br><small>GET /api/items HTTP/1.1</small></div><div class="arrow">→</div><div class="node">Headers<br><small>Content-Type, Authorization</small></div><div class="arrow">→</div><div class="node">Body (જરૂરી હોય ત્યારે)</div></div>
+<p>Responseમાં status line/status code, headers અને જરૂર મુજબ body હોય છે. JSON એ data exchangeનું સામાન્ય format છે.</p>
+<pre><code>{
+  "id": 7,
+  "name": "Keyboard",
+  "price": 850
+}</code></pre>
+<table><tr><th>Status</th><th>અર્થ</th></tr><tr><td>200 OK</td><td>Request સફળ; responseમાં result.</td></tr><tr><td>201 Created</td><td>નવો resource બન્યો.</td></tr><tr><td>204 No Content</td><td>સફળ, પરંતુ body નથી.</td></tr><tr><td>400 Bad Request</td><td>ખોટો input/request.</td></tr><tr><td>401 Unauthorized</td><td>Authentication જરૂરી/નિષ્ફળ.</td></tr><tr><td>403 Forbidden</td><td>User ઓળખાયો છે, પણ permission નથી.</td></tr><tr><td>404 Not Found</td><td>Resource નથી.</td></tr><tr><td>500 Internal Server Error</td><td>Serverમાં અનપેક્ષિત ભૂલ.</td></tr></table>
+<div class="trick"><b>Code trick:</b> 2xx = success, 4xx = client/request issue, 5xx = server issue. 401 = “Who are you?”, 403 = “You are known, but not allowed.”</div>
 </section>
-<section id="distance"><h2>3. Pendant vertices, distance અને center</h2><p><b>Pendant / leaf:</b> degree 1 ધરાવતો vertex. Treeના longest pathના બંને endpoints leaves જ હોય છે, એટલે ઓછામાં ઓછા બે leaves.</p>
-<ul><li><b>Distance d(u,v):</b> u થી v સુધીના shortest pathમાં edgesની સંખ્યા. Treeમાં path unique હોવાથી ગણવું સરળ.</li><li><b>Eccentricity e(v):</b> v થી સૌથી દૂરના vertex સુધીનું distance.</li><li><b>Diameter:</b> બધા pairwise distancesમાં સૌથી મોટું distance.</li><li><b>Radius:</b> બધા verticesની eccentricityમાં minimum.</li><li><b>Center:</b> minimum eccentricity ધરાવતો vertex/vertices.</li></ul>
-<div class="formula">e(v) = max d(v,u)<br>Radius r = min e(v)<br>Diameter D = max d(u,v)</div>
-<div class="diagram"><svg viewBox="0 0 520 125"><g stroke="#7ee7c4" stroke-width="3"><path d="M35 62H125H215H305H395"/></g><g fill="#ffd479"><circle cx="35" cy="62" r="8"/><circle cx="125" cy="62" r="8"/><circle cx="215" cy="62" r="8"/><circle cx="305" cy="62" r="8"/><circle cx="395" cy="62" r="8"/></g><g fill="#edf3ff" font-size="13" text-anchor="middle"><text x="35" y="88">a</text><text x="125" y="88">b</text><text x="215" y="88">c</text><text x="305" y="88">d</text><text x="395" y="88">e</text><text x="260" y="20">Path P₅</text></g><path d="M35 42V30H395V42" fill="none" stroke="#ffd479" stroke-width="2"/><text x="215" y="115" fill="#ffd479" text-anchor="middle" font-size="12">Diameter = 4 edges; center = c; radius = 2</text></svg></div>
-<p>Path P₅માં e(c)=2; e(b)=e(d)=3; endpointsની eccentricity 4. તેથી center c, radius 2, diameter 4.</p>
-<h3>Center શોધવાની Leaf-Pruning method</h3><ol><li>બધા leaves એકસાથે remove કરો.</li><li>બાકી treeના નવા leaves પણ remove કરો.</li><li>એક vertex બચે તો એક center; બે adjacent vertices બચે તો બે centers.</li></ol>
-<div class="memory"><b>Memory trick:</b> Center શોધવા બહારના પાંદડા છાંટતા જાઓ, મધ્યનો core બાકી રહેશે.</div>
-<div class="exam"><b>લખવાની રીત:</b> પહેલા દરેક vertexની eccentricity table બનાવો; પછી minimum = radius અને maximum distance = diameter. Center(s) સ્પષ્ટ લખો.</div>
+<section class="section"><h2>3. Controller, Action અને IActionResult</h2>
+<p>Controller HTTP requests હેન્ડલ કરે છે; action method ચોક્કસ operation ચલાવે છે. Attribute routingથી URLને action સાથે map કરી શકાય છે.</p>
+<pre><code>using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
+public class HelloController : ControllerBase
+{
+    [HttpGet]
+    public ActionResult&lt;string&gt; Get()
+        => Ok("Hello API");
+
+    [HttpGet("{id:int}")]
+    public IActionResult GetById(int id)
+    {
+        if (id &lt;= 0) return BadRequest();
+        return Ok($"ID = {id}");
+    }
+}</code></pre>
+<ul><li><code>[ApiController]</code>: API-specific behavior, જેમ કે model validationના automatic 400 responses.</li><li><code>[Route("api/[controller]")]</code>: controllerના નામ પરથી route base બને.</li><li><code>[HttpGet]</code>: GET request સાથે action જોડે.</li><li><code>Ok()</code>, <code>NotFound()</code>, <code>BadRequest()</code>: યોગ્ય HTTP response બનાવે.</li></ul>
+<table><tr><th>IActionResult</th><th>ActionResult&lt;T&gt;</th></tr><tr><td>વિવિધ પ્રકારના HTTP result આપવા અનુકૂળ.</td><td>સફળ પરિણામનો type <code>T</code> પણ બતાવે અને error result પણ આપી શકે.</td></tr><tr><td><code>IActionResult Get()</code></td><td><code>ActionResult&lt;Product&gt; Get()</code></td></tr></table>
 </section>
-<section id="spanning"><h2>4. Spanning tree, branch, chord</h2><p>Connected graph Gનું <b>spanning tree T</b> એ subgraph છે જે Gના <b>બધા vertices</b> રાખે છે, connected રહે છે અને cycle નથી ધરાવતું.</p><ul><li>n vertices હોય તો દરેક spanning treeમાં n−1 edges.</li><li>Spanning tree ફક્ત connected graph માટે હોય છે.</li><li>એક graphના ઘણા spanning trees હોઈ શકે.</li><li><b>Branch:</b> spanning treeમાં રહેલી edge.</li><li><b>Chord:</b> original graphની એવી edge જે પસંદ કરેલા spanning treeમાં નથી.</li></ul>
-<div class="flow"><span>Original connected graph</span><b class="arrow">→</b><span>Cycleમાંથી edge કાઢો</span><b class="arrow">→</b><span>બધા vertices + n−1 edges</span><b class="arrow">→</b><span>Spanning tree</span></div>
-<p><b>Cycle removal algorithm:</b> cycle શોધો, cycleની કોઈ એક edge કાઢો, connectivity જાળવો, cycles ન રહે ત્યાં સુધી repeat કરો.</p>
-<p><b>Rank and nullity</b> (connected graph): rank = n−1; nullity = e−n+1 = e−rank. Nullity એટલે spanning treeની બહાર રહેલી chordsની સંખ્યા.</p>
-<div class="formula">Branches = n − 1<br>Chords = e − (n − 1) = e − n + 1<br>Rank = n − components</div>
-<p><b>ઉદાહરણ:</b> n=8, e=12. Branches = 7; chords = 12−7 = 5; connected graphનો rank 7 અને nullity 5.</p>
-<div class="memory"><b>Trick:</b> Branch treeમાં, chord cycle વધારતી edge. “Chord count = total edges minus tree edges.”</div>
+<section class="section"><h2>4. Middleware અને Request Pipeline</h2>
+<div class="definition">Middleware એ request અને response વચ્ચે ચાલતો component છે. તે request આગળ મોકલી શકે, response બદલી શકે અથવા pipeline રોકી શકે.</div>
+<div class="diagram"><div class="node">Request</div><span class="arrow">→</span><div class="node">Exception handling</div><span class="arrow">→</span><div class="node">HTTPS / Routing</div><span class="arrow">→</span><div class="node">Authentication</div><span class="arrow">→</span><div class="node">Authorization</div><span class="arrow">→</span><div class="node">Controller</div><span class="arrow">→</span><div class="node">Response</div></div>
+<p>Middlewareનું order મહત્વનું છે: routing પછી authentication અને પછી authorization આવે તે સામાન્ય pattern છે. <code>Use...</code> middleware register કરે છે; <code>Map...</code> endpoint map કરે છે; <code>Run</code> terminal middleware છે, જે પછીનું pipeline આગળ નથી ચલાવતું.</p>
+<pre><code>var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();</code></pre>
+<h3>Custom logging middleware</h3><pre><code>app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
+    await next();
+    Console.WriteLine($"Status: {context.Response.StatusCode}");
+});</code></pre>
+<div class="trick"><b>યાદ રાખો:</b> Middleware = request pipelineના checkpoints. `await next()` requestને આગળના component સુધી મોકલે છે.</div>
 </section>
-<section id="circuits"><h2>5. Fundamental circuit અને all spanning trees</h2><p>એક spanning tree T લો. Tમાં ન હોય તેવી એક chord ઉમેરો તો <b>exactly one unique cycle</b> બને છે. આને તે chordનો fundamental circuit કહે છે.</p><div class="formula">Fundamental circuitsની સંખ્યા = chordsની સંખ્યા = e − n + 1 (connected G)</div>
-<p>ઉદાહરણ: connected graphમાં 8 vertices અને 10 edges હોય, તો chords = 10−8+1 = 3. કોઈપણ spanning treeના સંદર્ભમાં 3 fundamental circuits મળશે.</p>
-<h3>બધા spanning trees શોધવાનો practical method</h3><ol><li>Graphની દરેક possible edge selectionમાં n−1 edges લો.</li><li>Check કરો કે બધા vertices connected છે.</li><li>Cycle ન હોવી જોઈએ.</li><li>એકસરખા edge-set ફરી count ન કરો.</li></ol>
-<div class="warn"><b>Common mistake:</b> “n−1 edges છે એટલે tree” પૂરતું નથી. Connected હોવું જરૂરી છે. Disconnected graph માટે spanning tree નથી.</div>
-<h3>Cayley’s Theorem: labeled trees</h3><p>n labeled vertices પર અલગ labeled treesની સંખ્યા:</p><div class="formula">n^(n−2)</div><p>Examples: n=2 → 1; n=3 → 3; n=4 → 4² = 16; n=5 → 5³ = 125. Labels અલગ હોય તો same shape પણ અલગ labeled tree ગણાઈ શકે.</p>
-<div class="memory"><b>Remember:</b> Cayley = “n power n−2”. આ formula labeled trees માટે છે, unlabeled tree shapes માટે નહીં.</div>
+<section class="section"><h2>5. Dependency Injection (DI) અને Service Lifetimes</h2>
+<p>DIમાં class પોતાની dependency જાતે બનાવવાને બદલે framework પાસેથી મેળવે છે. આ loose coupling, testability અને maintenance સુધારે છે.</p>
+<pre><code>public interface IStudentService
+{
+    string GetName();
+}
+public class StudentService : IStudentService
+{
+    public string GetName() => "Riya";
+}
+// Program.cs
+builder.Services.AddScoped&lt;IStudentService, StudentService&gt;();</code></pre>
+<table><tr><th>Lifetime</th><th>ક્યારે નવું instance?</th><th>ઉપયોગ / યાદ રાખો</th></tr><tr><td>Transient</td><td>દરેક resolution વખતે</td><td>ટૂંકા, lightweight objects.</td></tr><tr><td>Scoped</td><td>એક HTTP request scopeમાં એક instance</td><td>Web requestના data services; સામાન્ય DbContext lifetime.</td></tr><tr><td>Singleton</td><td>Application lifetimeમાં એક instance</td><td>Shared stateless service; thread-safety ધ્યાનમાં રાખવી.</td></tr></table>
+<div class="trick"><b>મેમરી ટ્રિક:</b> T-S-S = Transient “તુરંત નવું”, Scoped “એક request”, Singleton “એક આખી app”. Singletonમાં scoped service સીધી inject કરવી lifetime issue બનાવે.</div>
 </section>
-<section id="revision"><h2>Unit 1: 60-second revision + written questions</h2><div class="grid"><div class="card"><b>Formula pocket</b><p>Tree edges n−1<br>Degree sum 2e<br>Rank n−1 (connected)<br>Nullity e−n+1<br>Cayley nⁿ⁻²</p></div><div class="card"><b>Concept pocket</b><p>Tree = connected, acyclic<br>Leaf = degree 1<br>Center = min eccentricity<br>Spanning tree = all vertices, no cycle<br>Chord + tree = fundamental circuit</p></div></div>
-<details><summary>Practice 1: Tree has 15 vertices. Edges?</summary>n−1 = 15−1 = <b>14 edges</b>.</details>
-<details><summary>Practice 2: Connected graph has n=9, e=13. Rank, nullity, chords?</summary>Rank = n−1 = 8. Nullity = e−n+1 = 13−9+1 = 5. Chords = 5.</details>
-<details><summary>Practice 3: Why every tree has at least two leaves?</summary>Take a longest path. If an endpoint had another neighbor outside the path, the path could be extended. Therefore both endpoints have degree 1.</details>
-<details><summary>Practice 4: Tree with 12 vertices, degrees 5,3,3 and nine leaves possible?</summary>Degree sum = 5+3+3+9=20, but required sum = 2(12−1)=22. Impossible.</details>
+<section class="section"><h2>6. Project Structure અને CRUD Controller</h2>
+<div class="diagram"><div class="node">Controllers<br><small>HTTP layer</small></div><span class="arrow">→</span><div class="node">Services<br><small>Business logic</small></div><span class="arrow">→</span><div class="node">Repository / DbContext</div><span class="arrow">→</span><div class="node">Database</div></div>
+<p>સામાન્ય project files: <code>Program.cs</code> startup/configuration, <code>appsettings.json</code> settings/connection string, <code>Controllers/</code> endpoints, <code>Models/</code> entities/request models, <code>Services/</code> business logic, <code>Data/</code> DbContext, <code>Properties/</code> launch settings.</p>
+<h3>સરળ ProductsController (exam-friendly in-memory example)</h3><pre><code>using Microsoft.AspNetCore.Mvc;
+public record Product(int Id, string Name, decimal Price);
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    private static readonly List&lt;Product&gt; items = new()
+    {
+        new Product(1, "Mouse", 500),
+        new Product(2, "Keyboard", 900)
+    };
+
+    [HttpGet]
+    public ActionResult&lt;IEnumerable&lt;Product&gt;&gt; GetAll() => Ok(items);
+
+    [HttpGet("{id:int}")]
+    public ActionResult&lt;Product&gt; Get(int id)
+    {
+        var p = items.FirstOrDefault(x => x.Id == id);
+        return p is null ? NotFound() : Ok(p);
+    }
+
+    [HttpPost]
+    public ActionResult&lt;Product&gt; Create(Product p)
+    {
+        var created = p with { Id = items.Count == 0 ? 1 : items.Max(x => x.Id)+1 };
+        items.Add(created);
+        return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
+    }
+
+    [HttpPut("{id:int}")]
+    public IActionResult Update(int id, Product input)
+    {
+        var i = items.FindIndex(x => x.Id == id);
+        if (i < 0) return NotFound();
+        items[i] = input with { Id = id };
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult Delete(int id)
+    {
+        var p = items.FirstOrDefault(x => x.Id == id);
+        if (p is null) return NotFound();
+        items.Remove(p);
+        return NoContent();
+    }
+}</code></pre>
+<p class="small muted">આ demo memoryમાં data રાખે છે; app restart થાય તો data ગુમાય. Database માટે EF Core/Repository ઉપયોગ કરવો.</p>
+<div class="exam"><b>Exam answer outline:</b> CRUD = Create (POST), Read (GET), Update (PUT/PATCH), Delete (DELETE). Endpoint, input, service/database operation અને યોગ્ય status code સમજાવો.</div>
 </section>
-<div class="page-nav"><a href="index.html">← Home</a><a href="unit2.html" class="next">Unit 2: Cut-Sets & Connectivity →</a></div>
-</main><footer>Graph Theory Gujlish Notes • Unit 1: Trees & Spanning Trees</footer></body></html>
+</main><footer>આ નોટ્સ અપલોડ કરેલા Unit PDFs અને All Units Solved Question Bank પર આધારિત છે. જ્યાં સમજ માટે વધારાની વ્યાખ્યા/ઉદાહરણ ઉમેર્યું છે, તે અભ્યાસ માટેનું સરળ સ્પષ્ટીકરણ છે.</footer><script src="app.js"></script></body></html>

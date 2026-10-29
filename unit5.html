@@ -1,18 +1,125 @@
-<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 5: Graph Algorithms | Graph Theory Notes</title><style>
-:root{--bg:#0b1020;--panel:#131b30;--panel2:#18243b;--ink:#edf3ff;--muted:#b5c2dc;--accent:#7ee7c4;--gold:#ffd479;--pink:#ff9ab5;--line:#2a3857}
-*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 85% 0,#1a2d4a 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;overflow-wrap:break-word}
-header{padding:38px 22px 28px;max-width:1120px;margin:auto}header .tag{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.75rem,5.5vw,3.2rem);line-height:1.15;margin:.4em 0;word-break:break-word}header p{color:var(--muted);max-width:760px;font-size:1.02rem}
-nav{position:sticky;top:0;z-index:10;background:#0b1020f0;border-block:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px max(16px,calc((100% - 1080px)/2));display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid transparent;transition:all .2s ease;font-size:.95rem;display:inline-flex;align-items:center;flex-shrink:0;min-height:38px}nav a:hover{background:var(--panel2);color:var(--accent);border-color:var(--line)}nav a.active{background:var(--accent);color:#06121a;font-weight:800;border-color:var(--accent)}
-main{max-width:1080px;margin:24px auto;padding:0 18px 70px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card,section{background:linear-gradient(140deg,var(--panel),#10182a);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 12px 30px #0002}.card{transition:transform .2s ease,border-color .2s ease}.card:hover{transform:translateY(-2px);border-color:var(--accent)}h2{font-size:clamp(1.3rem,4.5vw,1.55rem);margin:0 0 10px;color:var(--accent);word-break:break-word}h3{color:var(--gold);margin:20px 0 6px;font-size:clamp(1.1rem,3.8vw,1.3rem);word-break:break-word}p{margin:8px 0}ol,ul{padding-left:24px;margin:10px 0}li{margin:6px 0}.muted,small{color:var(--muted)}.pill{display:inline-block;background:#20344b;color:var(--accent);border-radius:99px;padding:3px 9px;font-size:.8rem;margin:3px}.formula{font:600 1.02rem/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;background:#08101d;border:1px solid #30425f;padding:12px 15px;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#fff;max-width:100%}.memory{border-left:4px solid var(--gold);padding:10px 14px;background:#302b20;border-radius:8px;margin:12px 0}.exam{border-left:4px solid var(--accent);padding:10px 14px;background:#142b2b;border-radius:8px;margin:12px 0}.warn{border-left:4px solid var(--pink);padding:10px 14px;background:#321f2b;border-radius:8px;margin:12px 0}table{border-collapse:collapse;width:100%;margin:12px 0;display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table::-webkit-scrollbar{height:6px}table::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}td,th{border:1px solid var(--line);padding:9px 12px;text-align:left;font-size:.95rem;min-width:90px}th{background:#1e2c45;white-space:nowrap}svg{max-width:100%;height:auto;display:block;margin:10px auto}.diagram{background:#09111e;border:1px solid var(--line);border-radius:14px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}button{background:var(--accent);color:#06121a;border:0;padding:10px 15px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.92rem;transition:transform .15s ease,opacity .15s ease;-webkit-tap-highlight-color:transparent}button:hover{opacity:.9;transform:translateY(-1px)}button:active{transform:scale(0.98)}details{background:#101a2d;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:var(--gold);font-weight:700;padding:4px 0;line-height:1.4;-webkit-tap-highlight-color:transparent}.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.flow span{padding:8px 12px;border:1px solid #4a6488;border-radius:10px;background:#16253b;font-size:.92rem;text-align:center}.arrow{color:var(--accent);font-weight:900}.quiz-answer{display:none;color:var(--accent);padding-top:8px}.reveal{margin-top:8px}.page-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.page-nav a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--panel2);color:var(--ink);text-decoration:none;border-radius:12px;border:1px solid var(--line);font-weight:700;transition:all .2s ease;min-height:44px}.page-nav a:hover{background:var(--panel);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}.page-nav a.next{margin-left:auto}footer{max-width:1080px;margin:auto;padding:24px 20px;color:var(--muted);border-top:1px solid var(--line);text-align:center;font-size:.92rem}@media(max-width:768px){body{font-size:15px}header{padding:26px 16px 20px}nav{padding:10px 14px}nav a{padding:8px 12px;font-size:.9rem}main{margin:16px auto;padding:0 12px 60px}section{padding:16px 14px;border-radius:14px;margin:12px 0}.card{padding:16px 14px;border-radius:14px}.controls button{flex:1 1 calc(50% - 8px);min-width:130px;text-align:center;padding:11px 12px}.page-nav{flex-direction:column;gap:10px}.page-nav a{width:100%;justify-content:center;padding:13px 16px;font-size:.95rem}.page-nav a.next{margin-left:0}.grid{grid-template-columns:1fr;gap:12px}.formula{font-size:.9rem;padding:10px 12px}ol,ul{padding-left:20px}td,th{padding:8px 10px;font-size:.88rem}.flow span{font-size:.85rem;padding:7px 9px}}@media(max-width:480px){header{padding:22px 14px 18px}main{padding:0 10px 50px}section{padding:14px 12px}.controls button{width:100%;flex:1 1 100%;padding:12px 14px}nav{gap:6px;padding:8px 10px}nav a{padding:7px 10px;font-size:.85rem}}@media print{body{background:white;color:#111}nav,.controls,button,.page-nav{display:none}.card,section{break-inside:avoid;background:white;color:#111;border:1px solid #aaa;box-shadow:none}.muted,small{color:#444}.formula{color:#111;background:#eee}.memory,.exam,.warn{background:#f4f4f4}h2,h3{color:#111}}
-</style></head><body><header><div class="tag">Graph Theory • Gujlish Revision</div><h1>Unit 5: Graph Algorithms</h1><p>Easy Gujarati + English notes • medium detail • MST, shortest paths, cut-vertices, fundamental circuits, examples, tricks and written-exam format.</p><div class="controls"><button onclick="window.print()">Print / Save PDF</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">Open practice answers</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">Close answers</button></div></header><nav><a href="index.html">Home</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html" class="active">Unit 5</a></nav><main><section id="map"><h2>Unit map</h2><div class="grid"><div class="card"><b>Graph algorithms</b><p>Precise finite steps to solve graph problems.</p></div><div class="card"><b>MST</b><p>Kruskal and Prim connect all vertices at minimum total weight.</p></div><div class="card"><b>Shortest paths</b><p>Dijkstra, Bellman–Ford and Floyd–Warshall.</p></div><div class="card"><b>Network reliability</b><p>Cut vertices and fundamental circuits identify weak points and cycles.</p></div></div></section>
-<section id="algorithm"><h2>1. Algorithms & graph input/output</h2><p><b>Algorithm:</b> problem solve કરવા માટે precisely defined, unambiguous stepsનો finite sequence. Algorithm terminate થવો જોઈએ.</p><p>Graph computerમાં આ રીતે represent થઈ શકે:</p><ul><li><b>Adjacency matrix:</b> vertices વચ્ચે edge છે કે નહીં તે matrixથી.</li><li><b>Incidence matrix:</b> rows vertices અને columns edges; entries બતાવે કે vertex edge સાથે incident છે.</li><li><b>Edge listing:</b> દરેક edgeને vertex pair તરીકે list કરવી.</li><li><b>Two linear arrays:</b> દરેક edge માટે source verticesની array F અને destination verticesની array H.</li></ul><p>Output algorithm પર આધારિત હોય છે: shortest-path distance/actual path, subgraphની adjacency matrix, અથવા yes/no result.</p><div class="memory"><b>Exam point:</b> Input graphની representation questionમાં જે હોય તે જ use કરો; vertex/edge order consistent રાખો.</div></section>
-<section id="mst"><h2>2. Minimum Spanning Tree (MST)</h2><p><b>Weighted graph:</b> દરેક edge સાથે weight/cost/distance જોડાયેલું હોય. <b>Spanning tree:</b> connected graphના બધા verticesને connect કરતો, cycle વગરનો subgraph. n verticesના treeમાં n−1 edges હોય છે.</p><p><b>Minimum spanning tree:</b> connected, undirected, weighted graphનું spanning tree જેમાં total edge weight minimum હોય.</p><div class="formula">Weight(T) = sum of weights of all edges in T; MST has minimum total weight</div><h3>Kruskal’s Algorithm (greedy)</h3><ol><li>બધી edgesને increasing weight મુજબ sort કરો.</li><li>સૌથી નાની edge લો.</li><li>જો edge add કરતાં cycle બને, તો reject કરો; નહીં તો include કરો.</li><li>જ્યાં સુધી n−1 edges પસંદ ન થાય ત્યાં સુધી continue.</li></ol><p>સામાન્ય રીતે sparse graphs માટે યોગ્ય. Same weightની edges હોય તો અલગ MST પણ મળી શકે, પણ minimum total weight same રહે.</p><h3>Prim’s Algorithm (greedy)</h3><ol><li>કોઈપણ એક vertexથી શરૂઆત કરો.</li><li>હાલના treeને કોઈ નવા vertex સાથે જોડતી minimum-weight edge પસંદ કરો.</li><li>નવા vertexને treeમાં add કરો.</li><li>બધા vertices જોડાઈ જાય ત્યાં સુધી repeat કરો.</li></ol><p>Primમાં દર વખતે current treeમાંથી બહારના vertex તરફ જતી minimum edge લો. Cycle બનાવતી edge add ન કરવી. Dense graphs માટે સામાન્ય રીતે અનુકૂળ.</p><table><tr><th>Kruskal</th><th>Prim</th></tr><tr><td>Global sorted edge listમાંથી minimum edge.</td><td>એક vertexથી શરૂ કરીને tree grow કરે.</td></tr><tr><td>Cycle બને તો edge reject.</td><td>Treeને નવા vertex સાથે જોડતી edge પસંદ.</td></tr><tr><td>Often sparse graph.</td><td>Often dense graph.</td></tr></table><div class="memory"><b>Trick:</b> Kruskal = sort all edges. Prim = grow from one point.</div><h3>Mini worked example</h3><p>Edges: AB=1, BC=2, AC=4, CD=3. Kruskal order: AB(1), BC(2), CD(3), AC(4). First three edges all vertices connect without cycle, so MST={AB,BC,CD}, total weight=1+2+3=6. AC is not needed.</p><div class="exam"><b>MST answer:</b> sorted edge list / selected edges in order / rejected cycle edges if any / final n−1 edges / total weight.</div></section>
-<section id="shortest"><h2>3. Shortest-path algorithms: overview</h2><p>Shortest path એ બે vertices વચ્ચે minimum total cost/distance ધરાવતો path છે. “Single-source”માં એક sourceથી બધા verticesની distances; “all-pairs”માં દરેક pairની distance શોધાય.</p><table><tr><th>Algorithm</th><th>Purpose</th><th>Negative edge?</th><th>Negative cycle</th></tr><tr><td>Dijkstra</td><td>Single-source</td><td>ના</td><td>ઉપયોગ માટે નહીં</td></tr><tr><td>Bellman–Ford</td><td>Single-source</td><td>હા</td><td>Detect કરી શકે</td></tr><tr><td>Floyd–Warshall</td><td>All-pairs</td><td>હા</td><td>Detect કરી શકે; valid finite shortest path નહીં જો reachable negative cycle હોય</td></tr></table><p><b>Relaxation:</b> edge u→v weight w માટે જો d[u]+w &lt; d[v], તો d[v]=d[u]+w update કરો.</p><div class="formula">If d[v] > d[u] + w(u,v), update d[v] = d[u] + w(u,v)</div></section>
-<section id="dijkstra"><h2>4. Dijkstra’s Algorithm</h2><p>Greedy single-source shortest-path algorithm. માત્ર non-negative edge weights માટે use કરો.</p><ol><li>Source distance 0; બાકીના vertices ∞.</li><li>Unvisited verticesમાંથી minimum tentative distance ધરાવતો vertex પસંદ કરો.</li><li>તેના દરેક neighbor માટે relaxation કરો.</li><li>Current vertexને visited/final mark કરો.</li><li>બધા reachable vertices process થાય ત્યાં સુધી repeat.</li></ol><h3>Mini calculation</h3><p>Edges S→A=4, S→B=1, B→A=2, A→T=1, B→T=7. Initially d(S)=0, others ∞. S process પછી A=4, B=1. B process પછી A=min(4,1+2)=3 and T=1+7=8. A process પછી T=min(8,3+1)=4. Final shortest route S→B→A→T, cost 1+2+1=4.</p><div class="warn"><b>Limitation:</b> Negative edge હોય તો Dijkstra fail થઈ શકે, કારણ કે finalized distance પછી negative edge routeને વધુ નાની બનાવી શકે.</div><div class="memory"><b>Trick:</b> Dijkstra = nearest unvisited vertex; negative weights નહીં.</div></section>
-<section id="bellman"><h2>5. Bellman–Ford Algorithm</h2><p>Single-source shortest paths માટે; negative edge weights handle કરી શકે છે અને reachable negative-weight cycle detect કરી શકે છે.</p><ol><li>Source distance 0, બાકીના ∞.</li><li>બધી edges પર relaxation કરો.</li><li>આ process V−1 iterations સુધી કરો, જ્યાં V verticesની સંખ્યા છે.</li><li>એક extra passમાં કોઈ distance હજી ઘટે તો reachable negative cycle છે.</li></ol><div class="formula">Repeat edge relaxation V−1 times; extra pass checks negative cycle</div><p>કારણ: negative cycle વગર shortest simple pathમાં વધુમાં વધુ V−1 edges હોઈ શકે.</p><h3>Example relaxation</h3><p>ધારો d(A)=0 અને edge A→B weight 6 છે; d(B)=∞ હોવાથી update d(B)=6. પછી B→C weight −2 હોય તો d(C)=min(∞,6−2)=4. Negative edge હોવા છતાં relaxation યોગ્ય રીતે કામ કરે છે.</p><div class="memory"><b>Trick:</b> Bellman–Ford = all edges repeatedly, V−1 rounds, extra round = negative cycle check.</div></section>
-<section id="floyd"><h2>6. Floyd–Warshall Algorithm</h2><p>Dynamic programming algorithm, all-pairs shortest paths શોધે છે. Positive અને negative edge weights handle કરી શકે, પરંતુ negative cycle હોય તો finite shortest path defined નથી.</p><h3>Initialization</h3><ul><li>Direct edge weight હોય તો matrix entryમાં એ weight.</li><li>Direct edge ન હોય તો ∞.</li><li>Diagonal entries d[i][i]=0.</li></ul><h3>Update formula</h3><div class="formula">Dᵏ[i,j] = min(Dᵏ⁻¹[i,j], Dᵏ⁻¹[i,k] + Dᵏ⁻¹[k,j])</div><p>દરેક k માટે check કરો: iથી j સીધો/અગાઉ જાણીતો path સારો છે કે k મારફતે જતો path સારો છે?</p><ol><li>Initial distance matrix D બનાવો.</li><li>k=1થી V સુધી each vertexને intermediate તરીકે consider કરો.</li><li>દરેક pair (i,j) માટે min(D[i][j], D[i][k]+D[k][j]) update કરો.</li><li>Final matrix all-pairs shortest distances આપે છે.</li></ol><h3>Mini calculation</h3><p>જો d(A,B)=3, d(B,C)=2 અને હાલ d(A,C)=10 હોય, તો Bને intermediate તરીકે consider કરતાં:</p><div class="formula">d(A,C) = min(10, 3+2) = 5</div><p>એટલે A→B→C routeનો cost 5 છે, જે direct cost 10 કરતાં ઓછો છે. Matrix calculationમાં ∞ સાથે path impossible હોય તો update નહીં થાય.</p><div class="memory"><b>Trick:</b> Floyd = all pairs; “direct/old route vs through k” compare કરો.</div></section>
-<section id="cutvertex"><h2>7. Cut-Vertices / Articulation Points & Separability</h2><p><b>Cut-vertex (articulation point):</b> connected graphમાંથી vertex અને તેની incident edges remove કરતાં connected componentsની સંખ્યા વધે, તો તે vertex cut-vertex છે. <b>Separable graph:</b> graphમાં cut-vertex હોય તો separable graph કહેવાય (PPT framing).</p><h3>Simple example</h3><p>Path A—B—C. B remove કરતાં A અને C disconnected થાય છે, એટલે B cut-vertex. Leaf vertex A remove કરવાથી remaining B—C connected રહે છે, એટલે A cut-vertex નથી.</p><h3>DFS/Tarjan approach (PPT concept)</h3><ul><li>DFS tree બનાવો.</li><li><b>Root condition:</b> DFS rootને બે કે તેથી વધુ DFS-tree children હોય તો root articulation point છે.</li><li><b>Non-root condition:</b> કોઈ child vના subtreeમાંથી uના ancestor સુધી back edge ન હોય, તો u articulation point બની શકે.</li><li>Leaf vertex સામાન્ય રીતે articulation point નથી.</li></ul><p><b>Back edge:</b> DFS-treeના vertexને તેના ancestor સાથે જોડતી non-tree edge. Parent edgeને back edge તરીકે count ન કરવી.</p><div class="memory"><b>Trick:</b> Cut-vertex = “આ vertex કાઢો અને network તૂટી જાય.” Root: 2+ DFS children; non-root: child subtree ancestor સુધી back edge ન પહોંચે.</div></section>
-<section id="circuits"><h2>8. A Set of Fundamental Circuits (Paton’s Algorithm)</h2><p>Fundamental circuit એ spanning treeમાં એક non-tree edge (chord) add કરતાં બનતો unique cycle છે. દરેક chord એક fundamental circuit આપે છે.</p><ol><li>DFS/BFSથી spanning tree બનાવો.</li><li>Non-tree edges/chords identify કરો.</li><li>દરેક chordના endpoints વચ્ચે spanning treeમાં પહેલેથી રહેલો unique path શોધો.</li><li>આ pathમાં chord ઉમેરો: fundamental circuit મળે.</li><li>બધી chords process કરો; બધા fundamental circuitsનો set મળે.</li></ol><div class="formula">For connected graph, number of fundamental circuits = m − n + 1</div><p>અહીં m=edges અને n=vertices. General disconnected graph માટે cycle rank m−n+c, જ્યાં c connected components છે.</p><h3>Mini example</h3><p>Triangle A—B—C—Aમાં spanning tree તરીકે AB અને BC પસંદ કરો. Chord AC add કરતાં circuit A—B—C—A મળે. n=3,m=3, તેથી m−n+1=1 fundamental circuit.</p><div class="memory"><b>Trick:</b> Treeમાં cycle નથી. એક chord add કરો = એક unique fundamental circuit.</div><p>Applications: network reliability, cycle basis generation, redundancy analysis.</p></section>
-<section id="revision"><h2>9. Quick revision & practice</h2><details><summary>Q1. For a connected graph with 7 vertices, how many edges are in every spanning tree?</summary>n−1=7−1=6 edges.</details><details><summary>Q2. Kruskal vs Prim?</summary>Kruskal edgesને globally increasing weightમાં process કરે અને cycle edge reject કરે. Prim one vertexથી tree grow કરે અને tree-to-new-vertex minimum edge પસંદ કરે.</details><details><summary>Q3. Which algorithm is safe for negative edges: Dijkstra or Bellman–Ford?</summary>Bellman–Ford. Dijkstra requires non-negative edge weights.</details><details><summary>Q4. How many Bellman–Ford passes are required before the extra negative-cycle check?</summary>V−1 relaxation rounds, then one extra pass to check whether any distance can still decrease.</details><details><summary>Q5. What does Floyd–Warshall calculate?</summary>Shortest distances between every pair of vertices.</details><details><summary>Q6. Is B a cut-vertex in A—B—C?</summary>Yes. Removing B disconnects A and C.</details><details><summary>Q7. A connected graph has n=6 vertices and m=8 edges. Number of fundamental circuits?</summary>m−n+1=8−6+1=3.</details><details><summary>Q8. In Floyd–Warshall, old d(A,C)=10, d(A,B)=3 and d(B,C)=2. New d(A,C)?</summary>min(10,3+2)=5.</details></section>
-<div class="page-nav"><a href="unit4.html">← Unit 4: Spectral Graph Theory</a><a href="index.html" class="next">Back to Home →</a></div>
-</main><footer>Graph Theory Gujlish Notes • Unit 5: Graph Algorithms</footer></body></html>
+<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Unit 5 — API Testing &amp; Architecture Basics</title><link rel="stylesheet" href="style.css"></head><body><header><div class="hero"><div class="eyebrow">ASP.NET CORE WEB API • UNIT 5</div><h1>Unit 5 — API Testing & Architecture Basics</h1><p>Testing pyramid, xUnit, Moq, SRP, repository/service layers અને dependency injection.</p><p class="small">સરળ ગુજરાતી • Written exam focus • Examples + code + memory tricks</p></div></header><nav class="navwrap"><a href="index.html">🏠 બધા Units</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main><div class="toolbar"><input id="topicSearch" type="search" placeholder="આ પેજમાં topic શોધો…"><button id="printBtn">Print / Save PDF</button></div>
+<section class="section"><h2>1. API Testing શા માટે?</h2>
+<p>Testing તપાસે છે કે API યોગ્ય output આપે છે, errors યોગ્ય રીતે handle કરે છે અને codeમાં ફેરફાર પછી જૂની functionality તૂટતી નથી. આ reliability, maintainability અને confidence વધારે છે.</p>
+<h3>Testing pyramid</h3><div class="diagram"><div class="node">E2E / UI tests<br><small>ઓછા, ધીમા, broad</small></div><span class="arrow">▲</span><div class="node">Integration tests<br><small>મધ્યમ સંખ્યા</small></div><span class="arrow">▲</span><div class="node">Unit tests<br><small>ઘણા, ઝડપી, focused</small></div></div>
+<table><tr><th>Level</th><th>શું test કરે?</th><th>ઉદાહરણ</th></tr><tr><td>Unit</td><td>એક method/class, dependencies isolated.</td><td>Discount calculation.</td></tr><tr><td>Integration</td><td>Components સાથે કામ કરે છે કે નહીં.</td><td>API + database.</td></tr><tr><td>End-to-End</td><td>પૂર્ણ user flow.</td><td>Loginથી order create સુધી.</td></tr></table>
+<div class="trick"><b>યાદ રાખો:</b> Pyramid નીચે = વધુ tests, ઝડપી અને સસ્તા; ઉપર = ઓછા tests, ધીમા અને broad.</div>
+</section>
+<section class="section"><h2>2. Unit Testing, xUnit, Fact અને Theory</h2>
+<p>Unit test એક નાનાં code unitનું expected behavior ચકાસે છે. Testમાં Arrange, Act, Assert pattern વાપરો.</p>
+<div class="diagram"><div class="node">Arrange<br><small>test data તૈયાર</small></div><span class="arrow">→</span><div class="node">Act<br><small>method call</small></div><span class="arrow">→</span><div class="node">Assert<br><small>result verify</small></div></div>
+<pre><code>public class Calculator
+{
+    public int Add(int a, int b) => a + b;
+}
+
+using Xunit;
+public class CalculatorTests
+{
+    [Fact]
+    public void Add_TwoNumbers_ReturnsSum()
+    {
+        // Arrange
+        var calc = new Calculator();
+        // Act
+        var result = calc.Add(2, 3);
+        // Assert
+        Assert.Equal(5, result);
+    }
+
+    [Theory]
+    [InlineData(2, true)]
+    [InlineData(3, false)]
+    [InlineData(0, true)]
+    public void IsEven_ReturnsExpected(int n, bool expected)
+    {
+        Assert.Equal(expected, n % 2 == 0);
+    }
+}</code></pre>
+<ul><li><code>[Fact]</code>: એક fixed test case.</li><li><code>[Theory]</code>: same test logicને અનેક data rows સાથે ચલાવે.</li><li><code>[InlineData]</code>: Theory માટે values આપે.</li><li>xUnit અને NUnit લોકપ્રિય .NET test frameworks છે.</li></ul>
+</section>
+<section class="section"><h2>3. Mocking અને Moq</h2>
+<p>Mock એટલે dependencyનું test માટેનું fake substitute, જે real database/network call કર્યા વગર behavior નિયંત્રિત અને verify કરવા દે.</p>
+<pre><code>public interface IProductRepository
+{
+    Task&lt;Product?&gt; GetByIdAsync(int id);
+}
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+}
+public class ProductService
+{
+    private readonly IProductRepository _repo;
+    public ProductService(IProductRepository repo) => _repo = repo;
+    public Task&lt;Product?&gt; GetAsync(int id) => _repo.GetByIdAsync(id);
+}
+
+// xUnit + Moq test
+[Fact]
+public async Task GetAsync_ReturnsProduct()
+{
+    var mock = new Mock&lt;IProductRepository&gt;();
+    mock.Setup(r => r.GetByIdAsync(7))
+        .ReturnsAsync(new Product { Id = 7, Name = "Pen" });
+
+    var service = new ProductService(mock.Object);
+    var result = await service.GetAsync(7);
+
+    Assert.NotNull(result);
+    Assert.Equal("Pen", result!.Name);
+    mock.Verify(r => r.GetByIdAsync(7), Times.Once);
+}</code></pre>
+<p><code>Setup()</code> expected mock behavior ગોઠવે; <code>ReturnsAsync()</code> async result આપે; <code>mock.Object</code> fake dependency છે; <code>Verify()</code> call થયું કે નહીં ચકાસે; <code>Times.Once</code> એક call અપેક્ષિત કરે.</p>
+<table><tr><th>Moq</th><th>NSubstitute</th></tr><tr><td><code>mock.Setup(x =&gt; x.Get()).Returns(value)</code></td><td><code>sub.Get().Returns(value)</code></td></tr><tr><td>Explicit Setup/Verify style.</td><td>Substitute object પર સીધું readable syntax.</td></tr></table>
+</section>
+<section class="section"><h2>4. SRP અને Separation of Concerns</h2>
+<p><b>Single Responsibility Principle (SRP):</b> class પાસે બદલાવનું એક જ મુખ્ય કારણ હોવું જોઈએ. Controller request/HTTP સંભાળે; Service business logic; Repository data access.</p>
+<div class="diagram"><div class="node">Controller<br><small>HTTP, status codes</small></div><span class="arrow">→</span><div class="node">Service Layer<br><small>business rules</small></div><span class="arrow">→</span><div class="node">Repository<br><small>data access</small></div><span class="arrow">→</span><div class="node">Database</div></div>
+<p>બધું controllerમાં લખવાથી class મોટો, coupled અને test કરવો મુશ્કેલ બને. Layer separationથી દરેક ભાગ અલગ test/change થઈ શકે.</p>
+</section>
+<section class="section"><h2>5. Repository Pattern અને CRUD contract</h2>
+<p>Repository Pattern data accessને interface/classમાં isolate કરે છે. Service databaseની વિગત જાણ્યા વગર repository interface સાથે કામ કરે છે.</p>
+<pre><code>public interface IProductRepository
+{
+    Task&lt;IReadOnlyList&lt;Product&gt;&gt; GetAllAsync();
+    Task&lt;Product?&gt; GetByIdAsync(int id);
+    Task AddAsync(Product product);
+    Task UpdateAsync(Product product);
+    Task DeleteAsync(int id);
+}</code></pre>
+<ul><li>ફાયદા: testability, separation, data source બદલવાની સરળતા, repeated data-access code ઓછો.</li><li>સાવચેતી: EF Coreનું DbContext પહેલેથી repository/unit-of-work જેવી ક્ષમતાઓ આપે છે; ખૂબ generic wrapper હંમેશા જરૂરી નથી.</li></ul>
+<h3>Service layer example</h3><pre><code>public class ProductService
+{
+    private readonly IProductRepository _repo;
+    public ProductService(IProductRepository repo) => _repo = repo;
+
+    public async Task&lt;Product?&gt; GetProductAsync(int id)
+    {
+        if (id &lt;= 0) return null;
+        return await _repo.GetByIdAsync(id);
+    }
+}</code></pre>
+</section>
+<section class="section"><h2>6. Dependency Injection (DI)</h2>
+<p>DI objectને તેની dependency બહારથી આપે છે. તે concrete implementationને સીધું new કરવાના બદલે interface દ્વારા coupling ઘટાડે છે.</p>
+<pre><code>// Program.cs
+builder.Services.AddScoped&lt;IProductRepository, ProductRepository&gt;();
+builder.Services.AddScoped&lt;ProductService&gt;();
+
+// Controller
+public ProductsController(ProductService service)
+{
+    _service = service;
+}</code></pre>
+<p>Testingમાં production repositoryની જગ્યાએ Moq mock inject કરી શકાય. Lifetimes: Transient = દરેક resolution પર; Scoped = request scope; Singleton = app lifetime. DbContext સામાન્ય રીતે scoped હોય છે.</p>
+<div class="trick"><b>Exam answer flow:</b> SRP (one responsibility) → layers (Controller-Service-Repository) → DI (interfaces injected) → mocks (dependency isolate) → tests (behavior verify).</div>
+</section>
+<section class="section"><h2>7. Question Bank: લખવા લાયક ટૂંકા જવાબો</h2>
+<div class="mini"><strong>Q: Testing important કેમ?</strong><p>Correctness, regression prevention, reliability, maintainability અને deployment પહેલાં defects શોધવા.</p></div>
+<div class="mini"><strong>Q: Repository Pattern શું?</strong><p>Data-access logicને abstraction પાછળ રાખતી design pattern; service/controller database implementationથી અલગ રહે.</p></div>
+<div class="mini"><strong>Q: Mocking શા માટે?</strong><p>Database/API જેવી external dependencyને isolate કરીને unit test ઝડપી, predictable અને repeatable બનાવવી.</p></div>
+<div class="mini"><strong>Q: AAA શું?</strong><p>Arrange = setup, Act = execute, Assert = expected result verify.</p></div>
+</section>
+</main><footer>આ નોટ્સ અપલોડ કરેલા Unit PDFs અને All Units Solved Question Bank પર આધારિત છે. જ્યાં સમજ માટે વધારાની વ્યાખ્યા/ઉદાહરણ ઉમેર્યું છે, તે અભ્યાસ માટેનું સરળ સ્પષ્ટીકરણ છે.</footer><script src="app.js"></script></body></html>

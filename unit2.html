@@ -1,46 +1,132 @@
-<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 2: Cut-Sets & Connectivity | Graph Theory Notes</title><style>
-:root{--bg:#0b1020;--panel:#131b30;--panel2:#18243b;--ink:#edf3ff;--muted:#b5c2dc;--accent:#7ee7c4;--gold:#ffd479;--pink:#ff9ab5;--line:#2a3857}
-*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 85% 0,#1a2d4a 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;overflow-wrap:break-word}
-header{padding:38px 22px 28px;max-width:1120px;margin:auto}header .tag{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.75rem,5.5vw,3.2rem);line-height:1.15;margin:.4em 0;word-break:break-word}header p{color:var(--muted);max-width:760px;font-size:1.02rem}
-nav{position:sticky;top:0;z-index:10;background:#0b1020f0;border-block:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px max(16px,calc((100% - 1080px)/2));display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid transparent;transition:all .2s ease;font-size:.95rem;display:inline-flex;align-items:center;flex-shrink:0;min-height:38px}nav a:hover{background:var(--panel2);color:var(--accent);border-color:var(--line)}nav a.active{background:var(--accent);color:#06121a;font-weight:800;border-color:var(--accent)}
-main{max-width:1080px;margin:24px auto;padding:0 18px 70px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card,section{background:linear-gradient(140deg,var(--panel),#10182a);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 12px 30px #0002}.card{transition:transform .2s ease,border-color .2s ease}.card:hover{transform:translateY(-2px);border-color:var(--accent)}h2{font-size:clamp(1.3rem,4.5vw,1.55rem);margin:0 0 10px;color:var(--accent);word-break:break-word}h3{color:var(--gold);margin:20px 0 6px;font-size:clamp(1.1rem,3.8vw,1.3rem);word-break:break-word}p{margin:8px 0}ol,ul{padding-left:24px;margin:10px 0}li{margin:6px 0}.muted,small{color:var(--muted)}.pill{display:inline-block;background:#20344b;color:var(--accent);border-radius:99px;padding:3px 9px;font-size:.8rem;margin:3px}.formula{font:600 1.02rem/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;background:#08101d;border:1px solid #30425f;padding:12px 15px;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#fff;max-width:100%}.memory{border-left:4px solid var(--gold);padding:10px 14px;background:#302b20;border-radius:8px;margin:12px 0}.exam{border-left:4px solid var(--accent);padding:10px 14px;background:#142b2b;border-radius:8px;margin:12px 0}.warn{border-left:4px solid var(--pink);padding:10px 14px;background:#321f2b;border-radius:8px;margin:12px 0}table{border-collapse:collapse;width:100%;margin:12px 0;display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table::-webkit-scrollbar{height:6px}table::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}td,th{border:1px solid var(--line);padding:9px 12px;text-align:left;font-size:.95rem;min-width:90px}th{background:#1e2c45;white-space:nowrap}svg{max-width:100%;height:auto;display:block;margin:10px auto}.diagram{background:#09111e;border:1px solid var(--line);border-radius:14px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}button{background:var(--accent);color:#06121a;border:0;padding:10px 15px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.92rem;transition:transform .15s ease,opacity .15s ease;-webkit-tap-highlight-color:transparent}button:hover{opacity:.9;transform:translateY(-1px)}button:active{transform:scale(0.98)}details{background:#101a2d;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:var(--gold);font-weight:700;padding:4px 0;line-height:1.4;-webkit-tap-highlight-color:transparent}.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.flow span{padding:8px 12px;border:1px solid #4a6488;border-radius:10px;background:#16253b;font-size:.92rem;text-align:center}.arrow{color:var(--accent);font-weight:900}.quiz-answer{display:none;color:var(--accent);padding-top:8px}.reveal{margin-top:8px}.page-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.page-nav a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--panel2);color:var(--ink);text-decoration:none;border-radius:12px;border:1px solid var(--line);font-weight:700;transition:all .2s ease;min-height:44px}.page-nav a:hover{background:var(--panel);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}.page-nav a.next{margin-left:auto}footer{max-width:1080px;margin:auto;padding:24px 20px;color:var(--muted);border-top:1px solid var(--line);text-align:center;font-size:.92rem}@media(max-width:768px){body{font-size:15px}header{padding:26px 16px 20px}nav{padding:10px 14px}nav a{padding:8px 12px;font-size:.9rem}main{margin:16px auto;padding:0 12px 60px}section{padding:16px 14px;border-radius:14px;margin:12px 0}.card{padding:16px 14px;border-radius:14px}.controls button{flex:1 1 calc(50% - 8px);min-width:130px;text-align:center;padding:11px 12px}.page-nav{flex-direction:column;gap:10px}.page-nav a{width:100%;justify-content:center;padding:13px 16px;font-size:.95rem}.page-nav a.next{margin-left:0}.grid{grid-template-columns:1fr;gap:12px}.formula{font-size:.9rem;padding:10px 12px}ol,ul{padding-left:20px}td,th{padding:8px 10px;font-size:.88rem}.flow span{font-size:.85rem;padding:7px 9px}}@media(max-width:480px){header{padding:22px 14px 18px}main{padding:0 10px 50px}section{padding:14px 12px}.controls button{width:100%;flex:1 1 100%;padding:12px 14px}nav{gap:6px;padding:8px 10px}nav a{padding:7px 10px;font-size:.85rem}}@media print{body{background:white;color:#111}nav,.controls,button,.page-nav{display:none}.card,section{break-inside:avoid;background:white;color:#111;border:1px solid #aaa;box-shadow:none}.muted,small{color:#444}.formula{color:#111;background:#eee}.memory,.exam,.warn{background:#f4f4f4}h2,h3{color:#111}}
-</style></head><body><header><div class="tag">Graph Theory • Gujlish Revision</div><h1>Unit 2: Cut-Sets & Connectivity</h1><p>Easy Gujarati + English notes • medium detail • definitions, formulas, examples, memory tricks and written-exam format.</p><div class="controls"><button onclick="window.print()">Print / Save PDF</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">Open practice answers</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">Close answers</button></div></header><nav><a href="index.html">Home</a><a href="unit1.html">Unit 1</a><a href="unit2.html" class="active">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main>
-<section id="map"><h2>Unit map</h2><div class="grid"><div class="card"><b>Cut-set</b><p>Minimum edge-set whose removal disconnects graph.</p></div><div class="card"><b>Fundamental cut-set</b><p>Exactly one branch of a selected spanning tree.</p></div><div class="card"><b>Circuits ↔ cut-sets</b><p>Chord and branch membership relation.</p></div><div class="card"><b>Connectivity</b><p>Edge connectivity, vertex connectivity, cut-vertex, bridge, separability.</p></div></div></section>
-<section id="cutset"><h2>1. Cut-set અને cut-edge</h2><p>Connected graph Gમાં <b>cut-set</b> એ edgesનો minimal set છે, જેને કાઢવાથી graph disconnected બને. Minimal એટલે આ setમાંથી કોઈ પણ proper subset કાઢવાથી graph હજી connected રહે.</p>
-<div class="diagram"><svg viewBox="0 0 520 150"><g stroke-width="3" fill="none"><path d="M45 40L110 75L45 110M110 75L175 40M110 75L175 110" stroke="#7ee7c4"/><path d="M345 40L410 75L345 110M410 75L475 40M410 75L475 110" stroke="#7ee7c4"/><path d="M175 40L345 40M175 110L345 110" stroke="#ff9ab5" stroke-dasharray="6 5"/></g><g fill="#ffd479"><circle cx="45" cy="40" r="7"/><circle cx="110" cy="75" r="7"/><circle cx="45" cy="110" r="7"/><circle cx="175" cy="40" r="7"/><circle cx="175" cy="110" r="7"/><circle cx="345" cy="40" r="7"/><circle cx="410" cy="75" r="7"/><circle cx="345" cy="110" r="7"/><circle cx="475" cy="40" r="7"/><circle cx="475" cy="110" r="7"/></g><text x="260" y="25" fill="#ff9ab5" text-anchor="middle" font-size="13">Cut edges</text><text x="110" y="140" fill="#edf3ff" text-anchor="middle" font-size="12">Component 1</text><text x="410" y="140" fill="#edf3ff" text-anchor="middle" font-size="12">Component 2</text></svg></div>
-<p><b>Cut-edge / bridge:</b> એક જ edge કાઢવાથી graph disconnected થાય. એટલે size 1નો cut-set.</p><h3>Properties</h3><ul><li>Cut-setનો કોઈ proper subset cut-set નથી.</li><li>Treeની દરેક edge bridge છે.</li><li>Cut-set કાઢવાથી connected graph બે componentsમાં વહેંચાય છે (course definition મુજબ minimal cut-set).</li><li>દરેક cut-setમાં દરેક spanning treeની ઓછામાં ઓછી એક branch આવવી જ જોઈએ.</li></ul>
-<div class="memory"><b>Trick:</b> Cut-set = “કેટલીક edges કાઢો તો connection cut.” Bridge = “એક જ edgeથી cut.”</div>
-<h3>Rank calculation</h3><p>Graph rank માટે r = n − k, જ્યાં n vertices અને k connected components. Connected graphમાં k=1 એટલે r=n−1. Cut-set કાઢ્યા પછી બે components થાય તો r=n−2, એટલે rank 1 ઘટે.</p>
-<div class="formula">Before: r = n − 1<br>After cut: r′ = n − 2<br>So r − r′ = 1</div>
-<h3>Proof idea: every cut-set intersects every spanning tree</h3><p>માની લો cut-set S કોઈ spanning tree Tની એક પણ edge સાથે common નથી. તો S કાઢ્યા પછી પણ Tની બધી edges રહે છે. T બધા verticesને જોડે છે, એટલે graph disconnected નહીં થાય. આ contradiction છે. તેથી Sમાં દરેક spanning treeની ઓછામાં ઓછી એક branch હોવી જરૂરી.</p>
+<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Unit 2 — EF Core &amp; Database Access</title><link rel="stylesheet" href="style.css"></head><body><header><div class="hero"><div class="eyebrow">ASP.NET CORE WEB API • UNIT 2</div><h1>Unit 2 — EF Core & Database Access</h1><p>ORM, DbContext/DbSet, migrations, CRUD, LINQ, async/await, tracking, DTO અને Dapper.</p><p class="small">સરળ ગુજરાતી • Written exam focus • Examples + code + memory tricks</p></div></header><nav class="navwrap"><a href="index.html">🏠 બધા Units</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main><div class="toolbar"><input id="topicSearch" type="search" placeholder="આ પેજમાં topic શોધો…"><button id="printBtn">Print / Save PDF</button></div>
+<section class="section"><h2>1. Entity Framework Core (EF Core) અને ORM</h2>
+<div class="definition"><b>ORM (Object-Relational Mapper):</b> programming languageના objects/classes અને relational databaseની tables વચ્ચે mapping કરતું tool. EF Core એ .NET માટેનું ORM છે.</div>
+<div class="diagram"><div class="node">C# Entity<br><small>Product object</small></div><span class="arrow">↔</span><div class="node">EF Core ORM<br><small>DbContext + LINQ</small></div><span class="arrow">↔</span><div class="node">Database Table<br><small>Products</small></div></div>
+<ul><li>SQL વારંવાર હાથથી લખવાની જરૂર ઘટે.</li><li>Strongly typed C# entities અને LINQ queries.</li><li>CRUD, change tracking, migrations અને async operations સપોર્ટ કરે.</li><li>Database provider પ્રમાણે SQL Server, SQLite વગેરે સાથે કામ કરી શકે.</li></ul>
+<h3>Code First vs Database First</h3><table><tr><th>Code First</th><th>Database First</th></tr><tr><td>પહેલા C# entity/model અને DbContext લખો; પછી migrationsથી database schema બનાવો.</td><td>પહેલા database હોય; scaffoldથી entity classes અને DbContext generate કરો.</td></tr><tr><td>નવી application અને codeથી schema manage કરવા અનુકૂળ.</td><td>જૂના/મોજૂદા database સાથે કામ કરવા અનુકૂળ.</td></tr></table>
 </section>
-<section id="fundamental"><h2>2. Fundamental cut-set</h2><p>પસંદ કરેલા spanning tree Tના સંદર્ભમાં એવો cut-set જે <b>exactly one branch</b> ધરાવે તેને fundamental cut-set કહે છે.</p><ol><li>Spanning tree પસંદ કરો.</li><li>એક branch b કાઢો. Tree બે ભાગમાં વહેંચાશે.</li><li>Original graphની જે edges આ બે ભાગ વચ્ચે જાય છે, તે બધું ભેગું કરો.</li><li>આ set branch bનો fundamental cut-set છે.</li></ol>
-<div class="formula">Number of fundamental cut-sets = number of branches = n − 1</div>
-<p>n=8 vertices હોય તો spanning treeમાં 7 branches અને તેથી 7 fundamental cut-sets હશે. Tree બદલવાથી sets બદલાઈ શકે, પરંતુ count 7 જ રહેશે.</p>
-<div class="memory"><b>Mnemonic:</b> “Branch → Cut-set; Chord → Circuit.” Treeની દરેક branch પોતાનો એક fundamental cut-set આપે છે.</div>
-<div class="exam"><b>Numerical:</b> connected graphમાં n=10. કોઈપણ spanning treeમાં branches=10−1=9, એટલે fundamental cut-sets=9.</div>
+<section class="section"><h2>2. Entity, DbContext અને DbSet</h2>
+<pre><code>using Microsoft.EntityFrameworkCore;
+
+public class Product
+{
+    public int Id { get; set; }       // Primary key convention
+    public string Name { get; set; } = "";
+    public decimal Price { get; set; }
+}
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options)
+        : base(options) { }
+
+    public DbSet&lt;Product&gt; Products => Set&lt;Product&gt;();
+}</code></pre>
+<ul><li><code>Product</code> entity: database rowનું C# representation.</li><li><code>DbContext</code>: database session, entity tracking અને save changesનું મુખ્ય object.</li><li><code>DbSet&lt;Product&gt;</code>: Products table/query પર કામ કરવાનો interface.</li><li><code>SaveChangesAsync()</code>: tracked changes databaseમાં commit કરે.</li></ul>
+<h3>Connection string અને registration</h3><pre><code>// appsettings.json
+{
+  "ConnectionStrings": {
+    "Default": "Server=(localdb)\\MSSQLLocalDB;Database=ShopDb;Trusted_Connection=True;TrustServerCertificate=True"
+  }
+}
+
+// Program.cs
+builder.Services.AddDbContext&lt;AppDbContext&gt;(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("Default")));</code></pre>
+<p>Connection string secret/production credentialsમાં હોય તો તેને source controlમાં મૂકવા નહીં; environment variables અથવા secret store વાપરો.</p>
 </section>
-<section id="relation"><h2>3. Fundamental circuits અને cut-sets વચ્ચે relation</h2><p>એક chord ઉમેરવાથી બનતા fundamental circuitમાં જે branches આવે છે, તે branchesના fundamental cut-setsમાં આ chord દેખાશે.</p><ul><li><b>Chord rule:</b> chord જે fundamental circuitમાં છે, તે circuitની દરેક branchના fundamental cut-setમાં આવે છે; બીજા cut-setsમાં નહીં.</li><li><b>Branch rule:</b> branchના fundamental cut-setમાં જે chords છે, તેમના fundamental circuitsમાં આ branch આવે છે; અન્ય circuitsમાં નહીં.</li></ul>
-<div class="flow"><span>Spanning tree T</span><b class="arrow">+</b><span>Chord ઉમેરો</span><b class="arrow">→</b><span>Fundamental circuit</span></div>
-<div class="flow"><span>Spanning tree T</span><b class="arrow">−</b><span>Branch કાઢો</span><b class="arrow">→</b><span>Fundamental cut-set</span></div>
-<div class="memory"><b>Remember pair:</b> Chord creates cycle; branch removal creates separation. Relationમાં “જે circuitમાં branch છે, એ branchના cut-setમાં chord આવશે.”</div>
+<section class="section"><h2>3. EF Core CRUD — asynchronous code</h2>
+<pre><code>[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    private readonly AppDbContext _db;
+    public ProductsController(AppDbContext db) => _db = db;
+
+    [HttpGet]
+    public async Task&lt;ActionResult&lt;List&lt;Product&gt;&gt;&gt; GetAll()
+        => await _db.Products.AsNoTracking().ToListAsync();
+
+    [HttpGet("{id:int}")]
+    public async Task&lt;ActionResult&lt;Product&gt;&gt; Get(int id)
+    {
+        var p = await _db.Products.FindAsync(id);
+        return p is null ? NotFound() : Ok(p);
+    }
+
+    [HttpPost]
+    public async Task&lt;ActionResult&lt;Product&gt;&gt; Create(Product p)
+    {
+        _db.Products.Add(p);
+        await _db.SaveChangesAsync();
+        return CreatedAtAction(nameof(Get), new { id = p.Id }, p);
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task&lt;IActionResult&gt; Update(int id, Product input)
+    {
+        var p = await _db.Products.FindAsync(id);
+        if (p is null) return NotFound();
+        p.Name = input.Name; p.Price = input.Price;
+        await _db.SaveChangesAsync();
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task&lt;IActionResult&gt; Delete(int id)
+    {
+        var p = await _db.Products.FindAsync(id);
+        if (p is null) return NotFound();
+        _db.Products.Remove(p);
+        await _db.SaveChangesAsync();
+        return NoContent();
+    }
+}</code></pre>
+<div class="grid"><div class="mini"><strong>Add</strong><br><code>Add(entity)</code> tracked state Added કરે.</div><div class="mini"><strong>Read</strong><br><code>ToListAsync()</code>, <code>FindAsync(id)</code> data fetch કરે.</div><div class="mini"><strong>Update</strong><br>tracked entityની property બદલો, પછી save.</div><div class="mini"><strong>Delete</strong><br><code>Remove(entity)</code>, પછી save.</div></div>
+<div class="trick"><b>CRUD memory:</b> Add → Save → Read; Update/Deleteમાં પહેલાં record શોધો → ફેરફાર કરો → Save. EF Coreમાં <code>SaveChangesAsync()</code> વગર changes સામાન્ય રીતે databaseમાં commit થતા નથી.</div>
 </section>
-<section id="connect"><h2>4. Connectivity and separability</h2><h3>Edge connectivity λ(G)</h3><p>Graph disconnect કરવા માટે દૂર કરવી પડે એવી minimum edgesની સંખ્યા. Minimum cut-setનું size.</p><div class="formula">λ(G) = minimum number of edges whose removal disconnects G</div>
-<h3>Vertex connectivity κ(G)</h3><p>Graph disconnect થાય અથવા trivial graph બને તે માટે દૂર કરવી પડે એવા minimum verticesની સંખ્યા (સામાન્ય રીતે complete graph માટે conventional edge cases અલગ હોય છે).</p><div class="formula">κ(G) = minimum number of vertices whose removal disconnects G</div>
-<table><tr><th>Term</th><th>શું remove કરીએ?</th><th>Meaning</th></tr><tr><td>Bridge</td><td>1 edge</td><td>એક edgeથી graph disconnect</td></tr><tr><td>Cut-vertex / articulation point</td><td>1 vertex</td><td>તે vertex કાઢતાં components વધે</td></tr><tr><td>Edge connectivity</td><td>Minimum edges</td><td>λ(G)</td></tr><tr><td>Vertex connectivity</td><td>Minimum vertices</td><td>κ(G)</td></tr><tr><td>Separable graph</td><td>κ(G)=1</td><td>એક cut-vertex છે</td></tr></table>
-<p><b>Example:</b> path a—b—c—d માં b અથવા c cut-vertex છે; દરેક edge bridge છે; λ=1 અને κ=1.</p>
-<h3>Useful inequalities / known results</h3><ul><li>For a connected graph, κ(G) ≤ λ(G) ≤ δ(G), where δ(G) is minimum degree (usual nontrivial graph convention).</li><li>Tree with at least 2 vertices: edge connectivity = 1.</li><li>Complete graph Kₙ: λ(Kₙ)=κ(Kₙ)=n−1.</li><li>Cycle Cₙ (n≥3): λ(Cₙ)=κ(Cₙ)=2.</li><li>Cut-vertex અને bridge વચ્ચે one-way implication always true નથી: bridge હોઈ શકે પણ તેના endpoints degree conditions મુજબ cut-vertex ન પણ હોય; cut-vertex હોઈ શકે અને incident bridge ન હોય.</li></ul>
-<div class="memory"><b>Trick:</b> λ = links/edges; κ = vertices/nodes. Greek λ ને links સાથે યાદ રાખો.</div>
+<section class="section"><h2>4. Migrations workflow</h2>
+<p>Migration એટલે modelમાં થયેલા ફેરફારને database schema changesમાં રૂપાંતરિત કરતો versioned record.</p>
+<div class="diagram"><div class="node">Entity / Model બદલો</div><span class="arrow">→</span><div class="node">Add Migration</div><span class="arrow">→</span><div class="node">Migration review</div><span class="arrow">→</span><div class="node">Update Database</div></div>
+<pre><code>dotnet ef migrations add InitialCreate
+dotnet ef database update
+dotnet ef migrations add AddProductCategory
+dotnet ef database update
+dotnet ef migrations list</code></pre>
+<ul><li><code>migrations add</code>: model અને અગાઉના snapshot વચ્ચેનો schema difference codeમાં બનાવે.</li><li><code>database update</code>: pending migrations database પર લાગુ કરે.</li><li>Migration deploy કરતાં પહેલાં generated SQL અને data-loss risk review કરો.</li><li>EF tools જરૂરી હોઈ શકે: <code>dotnet tool install --global dotnet-ef</code> અને projectમાં <code>Microsoft.EntityFrameworkCore.Design</code>.</li></ul>
 </section>
-<section id="worked"><h2>5. Worked examples and exam approach</h2><h3>Example A: Tree with 10 vertices has how many cut-sets?</h3><p>Tree edges = n−1 = 10−1=9. Treeની દરેક edge bridge એટલે size-1 cut-set. તેથી <b>9 cut-sets of size 1</b>.</p>
-<h3>Example B: Determine whether edge set S is a cut-set</h3><ol><li>Given setની બધી edges remove કરો.</li><li>Graph connected રહે તો S cut-set નથી.</li><li>Disconnected થાય તો Sના દરેક proper subsetને અલગથી test કરો.</li><li>બધા proper subsets connected રાખે તો જ minimal cut-set છે.</li></ol>
-<h3>Example C: κ=2, λ=3, δ=4 possible?</h3><p>હા, values inequality κ ≤ λ ≤ δ ને satisfy કરે છે: 2 ≤ 3 ≤ 4. Graph construct કરતી વખતે બે vertices કાઢવાથી disconnect થતું હોય, પણ edge disconnect માટે ઓછામાં ઓછી 3 edges કાઢવી પડે અને minimum degree 4 રાખવો.</p>
-<div class="exam"><b>Written answer structure:</b> Definition → mark removed edges/vertices → show remaining components → minimality/number → conclusion. Proofમાં “assume opposite → contradiction” લખો.</div>
+<section class="section"><h2>5. Change Tracking vs AsNoTracking</h2>
+<table><tr><th>Tracking query</th><th>No-tracking query</th></tr><tr><td>EF Core entityની state track કરે; property change પછી SaveChangesથી update થઈ શકે.</td><td>Read-only result માટે tracking overhead ઘટાડે.</td></tr><tr><td>ઉદાહરણ: <code>FindAsync</code>, સામાન્ય LINQ query.</td><td><code>_db.Products.AsNoTracking().ToListAsync()</code></td></tr><tr><td>Update/delete કરવાના entity માટે અનુકૂળ.</td><td>List/detail display અને reports માટે અનુકૂળ.</td></tr></table>
+<div class="trick"><b>યાદ રાખો:</b> “બદલવું છે?” → Tracking; “માત્ર બતાવવું છે?” → AsNoTracking.</div>
 </section>
-<section id="revision"><h2>Unit 2: rapid revision</h2><div class="grid"><div class="card"><b>Must memorize</b><p>Cut-set minimal edge set<br>Bridge = cut-set size 1<br>Fundamental cut-set count = n−1<br>λ = minimum edges removed<br>κ = minimum vertices removed</p></div><div class="card"><b>Common traps</b><p>Disconnected after removal alone not enough: set must be minimal. A cut-vertex does not always imply a bridge. Spanning tree changes fundamental sets, not their count.</p></div></div>
-<details><summary>Practice 1: n=12. Number of fundamental cut-sets?</summary>Branches = n−1 = 11, so there are <b>11 fundamental cut-sets</b>.</details>
-<details><summary>Practice 2: For C₆, find λ and κ.</summary>Cycle needs two edges removed to disconnect, and two vertices removed to disconnect. λ=2, κ=2.</details>
-<details><summary>Practice 3: Why must every cut-set contain a branch from every spanning tree?</summary>If it had no edge in common with a spanning tree, that spanning tree would remain after deletion and would keep all vertices connected. Contradiction.</details>
+<section class="section"><h2>6. Async/Await, Task અને LINQ</h2>
+<p><code>async</code> methodમાં asynchronous operation લખાય; <code>await</code> operation પૂરી થાય ત્યાં સુધી methodને suspend કરે, સામાન્ય રીતે threadને blocking કર્યા વિના. <code>Task&lt;T&gt;</code> ભવિષ્યમાં મળનાર T resultનું પ્રતિનિધિત્વ કરે છે.</p>
+<pre><code>public async Task&lt;Product?&gt; FindProductAsync(int id)
+{
+    return await _db.Products
+        .FirstOrDefaultAsync(p => p.Id == id);
+}</code></pre>
+<table><tr><th>LINQ operator</th><th>કામ</th><th>Example</th></tr><tr><td><code>Where</code></td><td>filter</td><td><code>Products.Where(p => p.Price &gt; 500)</code></td></tr><tr><td><code>OrderBy</code></td><td>ascending sort</td><td><code>.OrderBy(p => p.Name)</code></td></tr><tr><td><code>Select</code></td><td>fields/projected result</td><td><code>.Select(p => p.Name)</code></td></tr><tr><td><code>GroupBy</code></td><td>grouping</td><td><code>.GroupBy(p => p.Category)</code></td></tr><tr><td><code>Count</code>/<code>Any</code></td><td>count/existence</td><td><code>.Any(p => p.Price &gt; 0)</code></td></tr></table>
+<p>Query syntax: <code>from p in products where p.Price &gt; 500 select p</code>. Method syntax: <code>products.Where(p =&gt; p.Price &gt; 500)</code>. EF Coreમાં async operators: <code>ToListAsync</code>, <code>FirstOrDefaultAsync</code>, <code>AnyAsync</code>, <code>SaveChangesAsync</code>.</p>
 </section>
-<div class="page-nav"><a href="unit1.html">← Unit 1: Trees & Spanning Trees</a><a href="unit3.html" class="next">Unit 3: Domination & Matching →</a></div>
-</main><footer>Graph Theory Gujlish Notes • Unit 2: Cut-Sets & Connectivity</footer></body></html>
+<section class="section"><h2>7. DTO અને Dapper</h2>
+<p><b>DTO (Data Transfer Object):</b> API બહાર મોકલવા/મેળવવા માટેનું સરળ object. તે internal entityને સીધું expose થતું અટકાવે, જરૂરી fields જ મોકલે અને input/output contract અલગ રાખે.</p>
+<pre><code>public class CreateProductDto
+{
+    public string Name { get; set; } = "";
+    public decimal Price { get; set; }
+}
+// Controllerમાં DTOથી entity બનાવો:
+var product = new Product { Name = dto.Name, Price = dto.Price };</code></pre>
+<p><b>Dapper:</b> lightweight Micro-ORM. SQL query developer લખે છે અને Dapper resultને C# objectમાં map કરે છે. EF Core વધુ abstraction/change tracking/migrations આપે; Dapper explicit SQL અને ઓછું ORM overhead આપે.</p>
+<pre><code>using Dapper;
+using Microsoft.Data.SqlClient;
+
+using var connection = new SqlConnection(connectionString);
+var employees = await connection.QueryAsync&lt;Employee&gt;(
+    "SELECT Id, Name FROM Employees WHERE Department = @Department",
+    new { Department = "IT" });</code></pre>
+<div class="trick"><b>મેમરી ટ્રિક:</b> EF Core = Entity + LINQ + Tracking + Migrations. Dapper = SQL manually + fast mapping. DTO = Data બહાર મોકલવાનો safe shape.</div>
+</section>
+</main><footer>આ નોટ્સ અપલોડ કરેલા Unit PDFs અને All Units Solved Question Bank પર આધારિત છે. જ્યાં સમજ માટે વધારાની વ્યાખ્યા/ઉદાહરણ ઉમેર્યું છે, તે અભ્યાસ માટેનું સરળ સ્પષ્ટીકરણ છે.</footer><script src="app.js"></script></body></html>

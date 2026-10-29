@@ -1,49 +1,104 @@
-<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 3: Domination & Matching | Graph Theory Notes</title><style>
-:root{--bg:#0b1020;--panel:#131b30;--panel2:#18243b;--ink:#edf3ff;--muted:#b5c2dc;--accent:#7ee7c4;--gold:#ffd479;--pink:#ff9ab5;--line:#2a3857}
-*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 85% 0,#1a2d4a 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;overflow-wrap:break-word}
-header{padding:38px 22px 28px;max-width:1120px;margin:auto}header .tag{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.75rem,5.5vw,3.2rem);line-height:1.15;margin:.4em 0;word-break:break-word}header p{color:var(--muted);max-width:760px;font-size:1.02rem}
-nav{position:sticky;top:0;z-index:10;background:#0b1020f0;border-block:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px max(16px,calc((100% - 1080px)/2));display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid transparent;transition:all .2s ease;font-size:.95rem;display:inline-flex;align-items:center;flex-shrink:0;min-height:38px}nav a:hover{background:var(--panel2);color:var(--accent);border-color:var(--line)}nav a.active{background:var(--accent);color:#06121a;font-weight:800;border-color:var(--accent)}
-main{max-width:1080px;margin:24px auto;padding:0 18px 70px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card,section{background:linear-gradient(140deg,var(--panel),#10182a);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 12px 30px #0002}.card{transition:transform .2s ease,border-color .2s ease}.card:hover{transform:translateY(-2px);border-color:var(--accent)}h2{font-size:clamp(1.3rem,4.5vw,1.55rem);margin:0 0 10px;color:var(--accent);word-break:break-word}h3{color:var(--gold);margin:20px 0 6px;font-size:clamp(1.1rem,3.8vw,1.3rem);word-break:break-word}p{margin:8px 0}ol,ul{padding-left:24px;margin:10px 0}li{margin:6px 0}.muted,small{color:var(--muted)}.pill{display:inline-block;background:#20344b;color:var(--accent);border-radius:99px;padding:3px 9px;font-size:.8rem;margin:3px}.formula{font:600 1.02rem/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;background:#08101d;border:1px solid #30425f;padding:12px 15px;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#fff;max-width:100%}.memory{border-left:4px solid var(--gold);padding:10px 14px;background:#302b20;border-radius:8px;margin:12px 0}.exam{border-left:4px solid var(--accent);padding:10px 14px;background:#142b2b;border-radius:8px;margin:12px 0}.warn{border-left:4px solid var(--pink);padding:10px 14px;background:#321f2b;border-radius:8px;margin:12px 0}table{border-collapse:collapse;width:100%;margin:12px 0;display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table::-webkit-scrollbar{height:6px}table::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}td,th{border:1px solid var(--line);padding:9px 12px;text-align:left;font-size:.95rem;min-width:90px}th{background:#1e2c45;white-space:nowrap}svg{max-width:100%;height:auto;display:block;margin:10px auto}.diagram{background:#09111e;border:1px solid var(--line);border-radius:14px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}button{background:var(--accent);color:#06121a;border:0;padding:10px 15px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.92rem;transition:transform .15s ease,opacity .15s ease;-webkit-tap-highlight-color:transparent}button:hover{opacity:.9;transform:translateY(-1px)}button:active{transform:scale(0.98)}details{background:#101a2d;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:var(--gold);font-weight:700;padding:4px 0;line-height:1.4;-webkit-tap-highlight-color:transparent}.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.flow span{padding:8px 12px;border:1px solid #4a6488;border-radius:10px;background:#16253b;font-size:.92rem;text-align:center}.arrow{color:var(--accent);font-weight:900}.quiz-answer{display:none;color:var(--accent);padding-top:8px}.reveal{margin-top:8px}.page-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.page-nav a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--panel2);color:var(--ink);text-decoration:none;border-radius:12px;border:1px solid var(--line);font-weight:700;transition:all .2s ease;min-height:44px}.page-nav a:hover{background:var(--panel);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}.page-nav a.next{margin-left:auto}footer{max-width:1080px;margin:auto;padding:24px 20px;color:var(--muted);border-top:1px solid var(--line);text-align:center;font-size:.92rem}@media(max-width:768px){body{font-size:15px}header{padding:26px 16px 20px}nav{padding:10px 14px}nav a{padding:8px 12px;font-size:.9rem}main{margin:16px auto;padding:0 12px 60px}section{padding:16px 14px;border-radius:14px;margin:12px 0}.card{padding:16px 14px;border-radius:14px}.controls button{flex:1 1 calc(50% - 8px);min-width:130px;text-align:center;padding:11px 12px}.page-nav{flex-direction:column;gap:10px}.page-nav a{width:100%;justify-content:center;padding:13px 16px;font-size:.95rem}.page-nav a.next{margin-left:0}.grid{grid-template-columns:1fr;gap:12px}.formula{font-size:.9rem;padding:10px 12px}ol,ul{padding-left:20px}td,th{padding:8px 10px;font-size:.88rem}.flow span{font-size:.85rem;padding:7px 9px}}@media(max-width:480px){header{padding:22px 14px 18px}main{padding:0 10px 50px}section{padding:14px 12px}.controls button{width:100%;flex:1 1 100%;padding:12px 14px}nav{gap:6px;padding:8px 10px}nav a{padding:7px 10px;font-size:.85rem}}@media print{body{background:white;color:#111}nav,.controls,button,.page-nav{display:none}.card,section{break-inside:avoid;background:white;color:#111;border:1px solid #aaa;box-shadow:none}.muted,small{color:#444}.formula{color:#111;background:#eee}.memory,.exam,.warn{background:#f4f4f4}h2,h3{color:#111}}
-</style></head><body><header><div class="tag">Graph Theory • Gujlish Revision</div><h1>Unit 3: Domination & Matching</h1><p>Easy Gujarati + English notes • medium detail • definitions, formulas, examples, memory tricks and written-exam format.</p><div class="controls"><button onclick="window.print()">Print / Save PDF</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">Open practice answers</button><button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">Close answers</button></div></header><nav><a href="index.html">Home</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html" class="active">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main>
-<section id="map"><h2>Unit map</h2><div class="grid"><div class="card"><b>Domination</b><p>Selected vertices cover themselves and neighbors.</p></div><div class="card"><b>Domination number</b><p>Smallest dominating set; total domination excludes self-cover.</p></div><div class="card"><b>Matching</b><p>Edges selected without sharing endpoints.</p></div><div class="card"><b>Hall’s theorem</b><p>Condition for a complete matching in bipartite graphs.</p></div></div></section>
-<section id="domination"><h2>1. Neighborhood અને dominating set</h2><p>Vertex vનો <b>open neighborhood N(v)</b> = vના direct neighborsનો set. <b>Closed neighborhood N[v]</b> = v પોતે + બધા neighbors.</p><div class="formula">N[v] = N(v) ∪ {v}</div>
-<p><b>Dominating set S:</b> દરેક vertex v માટે, v પોતે Sમાં હોય અથવા Sમાં તેનો કોઈ neighbor હોય. સરળ રીતે: દરેક vertex પર router હોય અથવા એની બાજુના vertex પર router હોય.</p>
-<div class="diagram"><svg viewBox="0 0 520 140"><g stroke="#7ee7c4" stroke-width="3"><path d="M80 70L180 30M80 70L180 110M80 70L280 70M280 70L380 30M280 70L380 110"/></g><g fill="#ffd479"><circle cx="80" cy="70" r="10"/><circle cx="180" cy="30" r="8"/><circle cx="180" cy="110" r="8"/><circle cx="280" cy="70" r="10"/><circle cx="380" cy="30" r="8"/><circle cx="380" cy="110" r="8"/></g><circle cx="80" cy="70" r="17" fill="none" stroke="#ff9ab5" stroke-width="2" stroke-dasharray="4 3"/><circle cx="280" cy="70" r="17" fill="none" stroke="#ff9ab5" stroke-width="2" stroke-dasharray="4 3"/><text x="80" y="100" fill="#edf3ff" text-anchor="middle" font-size="12">router</text><text x="280" y="100" fill="#edf3ff" text-anchor="middle" font-size="12">router</text><text x="440" y="75" fill="#b5c2dc" font-size="12">covered</text></svg></div>
-<h3>Find a dominating set: easy method</h3><ol><li>High-degree verticesથી શરૂઆત કરો, કારણ કે તેઓ વધુ vertices cover કરે.</li><li>દરેક પસંદ કરેલા vertexને પોતે + neighbors તરીકે count કરો.</li><li>કોઈ vertex uncovered ન રહે તે check કરો.</li><li>Question “any dominating set” કહે તો કોઈ valid set પૂરતો; “minimum” કહે તો સૌથી નાનો set શોધવો.</li></ol>
-<p><b>Complete graph Kₙ:</b> કોઈપણ એક vertex બધા બીજા vertices સાથે adjacent છે, તેથી γ(Kₙ)=1.</p>
-<div class="formula">Domination number γ(G) = minimum |S| among all dominating sets S</div>
-<div class="memory"><b>Trick:</b> Dominating = “હું અથવા મારો neighbor.” Selected vertex પોતાને પણ cover કરે છે.</div>
-<h3>Useful bound from slides</h3><p>Order n અને maximum degree Δ હોય તો એક vertex વધુમાં વધુ Δ+1 vertices dominate કરી શકે. તેથી:</p><div class="formula">γ(G) ≥ ⌈ n / (Δ + 1) ⌉</div><p>ઉદાહરણ: n=11, Δ=3. એક vertex વધુમાં વધુ 4 vertices cover કરે. 2 vertices વધુમાં વધુ 8, એટલે 11 cover નહીં થાય. તેથી γ(G) ≥ ceil(11/4)=3.</p>
+<!doctype html><html lang="gu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Unit 3 — Routing, Model Binding &amp; Validation</title><link rel="stylesheet" href="style.css"></head><body><header><div class="hero"><div class="eyebrow">ASP.NET CORE WEB API • UNIT 3</div><h1>Unit 3 — Routing, Model Binding & Validation</h1><p>Routing patterns, constraints, binding sources, API versioning, Data Annotations અને FluentValidation.</p><p class="small">સરળ ગુજરાતી • Written exam focus • Examples + code + memory tricks</p></div></header><nav class="navwrap"><a href="index.html">🏠 બધા Units</a><a href="unit1.html">Unit 1</a><a href="unit2.html">Unit 2</a><a href="unit3.html">Unit 3</a><a href="unit4.html">Unit 4</a><a href="unit5.html">Unit 5</a></nav><main><div class="toolbar"><input id="topicSearch" type="search" placeholder="આ પેજમાં topic શોધો…"><button id="printBtn">Print / Save PDF</button></div>
+<section class="section"><h2>1. Routing — URLથી Action સુધી</h2>
+<div class="definition"><b>Routing:</b> incoming HTTP requestના URL અને HTTP methodને યોગ્ય controller/action અથવા endpoint સાથે match કરવાની પ્રક્રિયા.</div>
+<div class="diagram"><div class="node">GET /api/products/5</div><span class="arrow">→</span><div class="node">Route matching</div><span class="arrow">→</span><div class="node">ProductsController.Get(5)</div><span class="arrow">→</span><div class="node">HTTP response</div></div>
+<table><tr><th>Attribute routing</th><th>Conventional routing</th></tr><tr><td>Route attributes controller/action પાસે લખાય.</td><td>એક common route pattern configurationમાં લખાય.</td></tr><tr><td>Web APIs માટે સ્પષ્ટ અને resource-based.</td><td>MVC-style controllers માટે સામાન્ય.</td></tr></table>
+<pre><code>[ApiController]
+[Route("api/products")]
+public class ProductsController : ControllerBase
+{
+    [HttpGet] public IActionResult GetAll() => Ok();
+    [HttpGet("{id:int}")] public IActionResult Get(int id) => Ok(id);
+    [HttpPost] public IActionResult Create() => Created("/api/products/1", null);
+}
+// Conventional MVC route example:
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");</code></pre>
+<h3>Route constraints</h3><table><tr><th>Constraint</th><th>Example</th><th>અર્થ</th></tr><tr><td><code>int</code></td><td><code>{id:int}</code></td><td>integer જ match થાય.</td></tr><tr><td><code>min(1)</code></td><td><code>{id:min(1)}</code></td><td>1 અથવા વધુ.</td></tr><tr><td><code>max(100)</code></td><td><code>{id:max(100)}</code></td><td>100 સુધી.</td></tr><tr><td><code>alpha</code></td><td><code>{name:alpha}</code></td><td>alphabetic characters.</td></tr><tr><td><code>guid</code></td><td><code>{id:guid}</code></td><td>GUID format.</td></tr><tr><td><code>range(1,10)</code></td><td><code>{id:range(1,10)}</code></td><td>rangeમાં value.</td></tr></table>
+<div class="trick"><b>યાદ રાખો:</b> Constraint route matching કરે છે; તે સંપૂર્ણ business validationનો વિકલ્પ નથી.</div>
 </section>
-<section id="total"><h2>2. Domination vs Total domination</h2><p><b>Total dominating set S:</b> દરેક vertex ઓછામાં ઓછા એક selected vertex સાથે adjacent હોવો જોઈએ. Vertex પોતે Sમાં છે એટલા માટે પોતાને dominate કરતો નથી.</p><table><tr><th>Feature</th><th>Dominating</th><th>Total dominating</th></tr><tr><td>Selected vertex પોતાને cover કરે?</td><td>હા</td><td>ના</td></tr><tr><td>દરેક vertexનો selected neighbor જરૂરી?</td><td>ના</td><td>હા</td></tr><tr><td>Minimum size</td><td>γ(G)</td><td>γₜ(G)</td></tr></table>
-<p>Total domination સામાન્ય રીતે isolated vertex હોય તો શક્ય નથી. કોઈ isolated vertexને neighbor જ નથી.</p><div class="formula">γₜ(G) = minimum size of a total dominating set</div>
-<p>Graphમાં isolated vertices ન હોય તો <b>γ(G) ≤ γₜ(G)</b>, કારણ કે total dominating set, ordinary dominating set પણ હોય છે, પણ ordinary dominating set total condition પૂરી ન કરે એ શક્ય છે.</p>
-<div class="memory"><b>Trick:</b> “Total = everyone needs a teammate.” Selected vertexને પણ બીજો selected neighbor જોઈએ.</div>
-<h3>Cycle graph quick result</h3><p>Cycle Cₙમાં domination number સામાન્ય રીતે γ(Cₙ)=⌈n/3⌉. Total domination માટે adjacent selected vertices સહિત coverage check કરવું; formula-based result course/notation મુજબ verify કરીને લખો. Examમાં small cycle હોય તો set explicitly show કરવો સૌથી safe.</p>
+<section class="section"><h2>2. Model Binding અને Binding Sources</h2>
+<p>Model binding HTTP requestમાંથી મળતા valuesને action parameters અથવા C# model propertiesમાં ફેરવે છે.</p>
+<table><tr><th>Attribute</th><th>Data source</th><th>Example URL/request</th></tr><tr><td><code>[FromRoute]</code></td><td>URL path</td><td><code>/api/products/7</code></td></tr><tr><td><code>[FromQuery]</code></td><td>Query string</td><td><code>/api/products?page=2</code></td></tr><tr><td><code>[FromBody]</code></td><td>Request body (JSON)</td><td><code>{"name":"Pen"}</code></td></tr><tr><td><code>[FromHeader]</code></td><td>HTTP header</td><td><code>X-Client: web</code></td></tr><tr><td><code>[FromForm]</code></td><td>Form data / upload</td><td>multipart/form-data</td></tr></table>
+<pre><code>[HttpGet("{id:int}")]
+public IActionResult Get(
+    [FromRoute] int id,
+    [FromQuery] string? search,
+    [FromHeader(Name = "X-Client")] string? client)
+{
+    return Ok(new { id, search, client });
+}
+
+public class CreateStudentRequest
+{
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}
+[HttpPost]
+public IActionResult Create([FromBody] CreateStudentRequest request)
+    => Ok(request);</code></pre>
+<div class="trick"><b>મેમરી:</b> Route = pathમાં, Query = ? પછી, Body = JSON payload, Header = request metadata, Form = upload/form.</div>
 </section>
-<section id="matching"><h2>3. Matching, maximal અને maximum</h2><p><b>Matching M:</b> edgesનો એવો subset જેમાં કોઈ બે edges common endpoint share ન કરે. એક vertex વધુમાં વધુ એક matched edgeમાં આવી શકે.</p><div class="diagram"><svg viewBox="0 0 520 120"><g stroke="#71839f" stroke-width="3"><path d="M60 35H160M160 35H260M260 35H360M360 35H460"/></g><g stroke="#7ee7c4" stroke-width="5"><path d="M60 35H160M260 35H360"/></g><g fill="#ffd479"><circle cx="60" cy="35" r="8"/><circle cx="160" cy="35" r="8"/><circle cx="260" cy="35" r="8"/><circle cx="360" cy="35" r="8"/><circle cx="460" cy="35" r="8"/></g><text x="260" y="75" fill="#edf3ff" text-anchor="middle" font-size="13">Highlighted edges form a matching</text><text x="260" y="95" fill="#b5c2dc" text-anchor="middle" font-size="12">Unmatched vertex is allowed</text></svg></div>
-<ul><li><b>Maximal matching:</b> તેમાં કોઈ extra edge add કરી શકાય નહીં, કારણ કે તે endpoint-sharing કરાવશે.</li><li><b>Maximum matching:</b> graphમાં possible matchingsમાંથી સૌથી વધુ edges ધરાવતું matching.</li><li><b>Matching number α′(G) / ν(G):</b> maximum matchingમાં edgesની સંખ્યા.</li><li><b>Perfect matching:</b> દરેક vertex કોઈ એક matching edgeમાં આવવો જોઈએ.</li></ul>
-<table><tr><th>Maximal</th><th>Maximum</th></tr><tr><td>“હવે edge ઉમેરવી શક્ય નથી.”</td><td>“સૌથી વધુ edgesની સંખ્યા મેળવી.”</td></tr><tr><td>Size નાનું હોઈ શકે.</td><td>Global best size.</td></tr><tr><td>દરેક maximum maximal છે.</td><td>દરેક maximal maximum નથી.</td></tr></table>
-<div class="memory"><b>Mnemonic:</b> Maximal = no more can be added. Maximum = most possible. શબ્દો લગભગ સરખા છે, અર્થ અલગ!</div>
-<h3>Example: path P₄ = a—b—c—d</h3><p>M₁={(a,b),(c,d)} એ maximum matching છે, size 2. M₂={(b,c)} maximal છે, કારણ કે બાજુની કોઈ edge add કરી શકાતી નથી; પરંતુ maximum નથી, કારણ કે size માત્ર 1 છે.</p>
-<div class="exam"><b>Matching number કાઢવાની રીત:</b> disjoint edges પસંદ કરો, maximum શક્ય pair count બતાવો. Maximum સાબિત કરવા માટે upper bound અથવા graphની રચના પ્રમાણે વધુ edges possible નથી તે સમજાવો.</div>
+<section class="section"><h2>3. Validation: Data Annotations અને FluentValidation</h2>
+<p>Validation તપાસે છે કે input required rules મુજબ છે કે નહીં. Invalid input database/business logic સુધી પહોંચે તે પહેલાં રોકવું જોઈએ.</p>
+<h3>Data Annotations</h3><pre><code>using System.ComponentModel.DataAnnotations;
+public class ProductRequest
+{
+    [Required]
+    [StringLength(60, MinimumLength = 2)]
+    public string Name { get; set; } = "";
+
+    [Range(1, 100000)]
+    public decimal Price { get; set; }
+
+    [EmailAddress]
+    public string? ContactEmail { get; set; }
+}</code></pre>
+<table><tr><th>Attribute</th><th>Rule</th></tr><tr><td><code>[Required]</code></td><td>value જરૂરી.</td></tr><tr><td><code>[StringLength(60)]</code></td><td>string length limit.</td></tr><tr><td><code>[Range(1,100)]</code></td><td>number range.</td></tr><tr><td><code>[EmailAddress]</code></td><td>email format.</td></tr><tr><td><code>[RegularExpression("...")]</code></td><td>pattern matching.</td></tr></table>
+<h3>FluentValidation</h3><pre><code>using FluentValidation;
+public class StudentRequest
+{
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+    public string Email { get; set; } = "";
+}
+public class StudentValidator : AbstractValidator&lt;StudentRequest&gt;
+{
+    public StudentValidator()
+    {
+        RuleFor(x => x.Name).NotEmpty().MinimumLength(2);
+        RuleFor(x => x.Age).InclusiveBetween(16, 80);
+        RuleFor(x => x.Email).NotEmpty().EmailAddress();
+    }
+}</code></pre>
+<table><tr><th>Data Annotations</th><th>FluentValidation</th></tr><tr><td>Attributes model properties પર.</td><td>અલગ validator class અને fluent rules.</td></tr><tr><td>સરળ, સામાન્ય rules માટે અનુકૂળ.</td><td>જટિલ/conditional rules અને reusable validation માટે વધુ expressive.</td></tr></table>
+<p><b>Custom validation attributeનો વિચાર:</b> <code>ValidationAttribute</code> inherit કરો અને <code>IsValid()</code> override કરીને true/false અથવા ValidationResult આપો. Source question bankમાં આ concept પૂછાય છે; implementationમાં custom ruleનું logic લખવું પડે.</p>
+<div class="trick"><b>Validation યાદ રાખો:</b> Required = ખાલી નહીં; Range = હદમાં; StringLength = લંબાઈ; EmailAddress = format.</div>
 </section>
-<section id="perfect"><h2>4. Perfect matching અને bipartite graph</h2><p><b>Perfect matching:</b> matching જે graphના દરેક vertexને exactly એક વખત match કરે. એટલે graphનો order even હોવો જરૂરી, પણ even order હોવું પૂરતું નથી.</p><div class="formula">Perfect matching ⇒ |V(G)| is even</div>
-<p><b>Example:</b> 6 verticesમાં 3 disjoint edges બધાં verticesને cover કરે તો perfect matching. 5 vertices હોય તો perfect matching શક્ય નથી. 6 vertices હોવા છતાં graphની edges યોગ્ય ન હોય તો perfect matching ન પણ મળે.</p>
-<p><b>Bipartite graph:</b> vertices બે disjoint sets U અને Wમાં વહેંચાય; દરેક edge Uમાંથી W તરફ જાય, એક જ sideની અંદર edge નહીં હોય. Students–books અથવા interns–tasks assignment એ તેનું real-life model છે.</p>
+<section class="section"><h2>4. API Versioning</h2>
+<p>API versioningથી નવા clients માટે નવી contract/behavior આપી શકાય અને જૂના clientsને તરત તોડ્યા વગર support કરી શકાય.</p>
+<div class="diagram"><div class="node">Client v1</div><span class="arrow">→</span><div class="node">/api/v1/products</div><span class="arrow">→</span><div class="node">Version 1 endpoint</div><br><div class="node">Client v2</div><span class="arrow">→</span><div class="node">/api/v2/products</div><span class="arrow">→</span><div class="node">Version 2 endpoint</div></div>
+<p>મુખ્ય approaches: URL segment (<code>/api/v1/products</code>), query string (<code>?api-version=1.0</code>), header-based versioning. Uploaded notesમાં URL-based versioning પર ખાસ ભાર છે.</p>
+<pre><code>// URL segment pattern concept
+[Route("api/v1/products")]
+public class ProductsV1Controller : ControllerBase { }
+
+// v2 can use a different route/contract
+[Route("api/v2/products")]
+public class ProductsV2Controller : ControllerBase { }</code></pre>
+<p>વાસ્તવિક ASP.NET API Versioning package configuration projectની package/version પ્રમાણે અલગ હોઈ શકે; examમાં approach, URL example અને backward compatibilityનો હેતુ સમજાવો.</p>
 </section>
-<section id="hall"><h2>5. Hall’s Theorem (without proof)</h2><p>Bipartite graph G=(U,W)માં Uના દરેક vertexને અલગ W-vertex સાથે match કરવું હોય, તો દરેક subset X ⊆ U માટે તેનો neighborhood N(X) ઓછામાં ઓછો X જેટલો હોવો જોઈએ.</p><div class="formula">Hall condition: |N(X)| ≥ |X| for every X ⊆ U</div>
-<p>આ condition true હોય તો Uના બધા verticesને distinct neighbors સાથે match કરી શકાય. જો કોઈ subset X માટે |N(X)| &lt; |X| હોય, તો complete matching impossible.</p>
-<h3>Example: students and books</h3><p>3 students {A,B,C}. Preferences: A wants {1,2}; B wants {1,2}; C wants {2}. X={A,B,C} માટે N(X)={1,2}, એટલે |N(X)|=2 &lt; 3. તેથી બધા 3 studentsને અલગ preferred book આપવી impossible.</p>
-<h3>How to apply in exam</h3><ol><li>Graphને bipartite sets U,Wમાં લખો.</li><li>Relevant subset X of U લો.</li><li>તેને જોડાયેલા W vertices N(X) ગણો.</li><li>જો કોઈ subset માટે |N(X)| &lt; |X| મળે, તો “No complete matching by Hall’s condition.”</li><li>જો બધા subsets condition satisfy કરે, Hall’s theoremથી complete matching exists.</li></ol>
-<div class="memory"><b>Trick:</b> “Group જેટલો મોટો, options ઓછામાં ઓછા એટલા.” 4 students માત્ર 3 booksની options share કરે તો બધા 4ને unique book આપી શકાતી નથી.</div>
+<section class="section"><h2>5. Validation flow અને exam writing</h2>
+<div class="diagram"><div class="node">HTTP input</div><span class="arrow">→</span><div class="node">Model binding</div><span class="arrow">→</span><div class="node">Validation rules</div><span class="arrow">→</span><div class="node">Valid? yes → logic</div><span class="arrow">/</span><div class="node">no → 400 errors</div></div>
+<p><code>[ApiController]</code> સાથે model validation નિષ્ફળ જાય ત્યારે framework સામાન્ય રીતે automatic HTTP 400 response આપે છે. અન્ય setupમાં <code>ModelState.IsValid</code> તપાસી શકાય.</p>
+<pre><code>[HttpPost]
+public IActionResult Create(ProductRequest request)
+{
+    if (!ModelState.IsValid)
+        return BadRequest(ModelState);
+    return Ok("Valid request");
+}</code></pre>
+<div class="exam"><b>Written answer structure:</b> (1) definition, (2) purpose, (3) types/attributes, (4) short code example, (5) benefit/limitation. Difference questionમાં બંને columnsમાં same criteria સરખાવો.</div>
 </section>
-<section id="applications"><h2>6. Applications and written questions</h2><div class="grid"><div class="card"><b>Domination</b><p>Wi-Fi router placement, sensor placement, security camera coverage, minimum monitoring stations.</p></div><div class="card"><b>Matching</b><p>Intern–task assignment, students–books allocation, teams–opponents, job placement.</p></div></div>
-<div class="exam"><b>Answer style:</b> definition → draw/label graph → selected set/edges → verify condition for every vertex → state minimum/maximum result.</div>
-<details><summary>Practice 1: Complete graph K₈ domination number?</summary>Any one vertex adjacent to all others. γ(K₈)=1.</details>
-<details><summary>Practice 2: For P₄, give maximal but not maximum matching.</summary>{(b,c)} is maximal, size 1, but {(a,b),(c,d)} has size 2, so it is not maximum.</details>
-<details><summary>Practice 3: Can a graph with 7 vertices have perfect matching?</summary>No. Perfect matching covers vertices in pairs, so the order must be even.</details>
-<details><summary>Practice 4: Hall condition fails if 4 students share only 3 possible books. Why?</summary>For X containing those 4 students, |N(X)|=3&lt;4=|X|. Hence no complete matching.</details>
-</section>
-<div class="page-nav"><a href="unit2.html">← Unit 2: Cut-Sets & Connectivity</a><a href="unit4.html" class="next">Unit 4: Spectral Graph Theory →</a></div>
-</main><footer>Graph Theory Gujlish Notes • Unit 3: Domination & Matching</footer></body></html>
+</main><footer>આ નોટ્સ અપલોડ કરેલા Unit PDFs અને All Units Solved Question Bank પર આધારિત છે. જ્યાં સમજ માટે વધારાની વ્યાખ્યા/ઉદાહરણ ઉમેર્યું છે, તે અભ્યાસ માટેનું સરળ સ્પષ્ટીકરણ છે.</footer><script src="app.js"></script></body></html>

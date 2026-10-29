@@ -1,1 +1,4 @@
-function filterTopics(){const q=(document.getElementById('topicSearch')?.value||'').toLowerCase().trim();let shown=0;document.querySelectorAll('main .topic').forEach(s=>{const match=!q||s.innerText.toLowerCase().includes(q);s.classList.toggle('hidden',!match);if(match)shown++});const c=document.getElementById('searchCount');if(c)c.textContent=q?`${shown} topic દેખાય છે`:'બધા topics દેખાય છે'}
+
+const search=document.querySelector('#topicSearch');
+if(search){search.addEventListener('input',()=>{const q=search.value.toLocaleLowerCase();document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hide',q&&!s.innerText.toLocaleLowerCase().includes(q)));});}
+document.querySelector('#printBtn')?.addEventListener('click',()=>window.print());
